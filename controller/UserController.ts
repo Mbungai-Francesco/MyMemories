@@ -42,3 +42,46 @@ export const CreateUser = async (req: Request, res: Response) => {
     return res.status(500).json({ message: 'Internal Server Error' });
   }
 }
+
+export const GetUsers = async (req: Request, res: Response) => {
+  try {
+    const users = await db.user.findMany({
+      include: {
+        tags: true,
+        categories: true,
+        notes: true
+      }
+    });
+    if (!users || users.length === 0) {
+      return res.status(404).json({ message: 'No users found' });
+    }
+    return res.status(200).json({ message: 'Users found', data: users });
+  } catch (error: any) {
+    console.log(error.message);
+    return res.status(500).json({ message: 'Internal Server Error' });
+  }
+}
+
+export const GetUser = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const user = await db.user.findUnique({
+      where: {
+        id: id,
+      },
+      include: {
+        tags: true,
+        categories: true,
+        notes: true
+      }
+    });
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    return res.status(200).json({ message: 'User found', data: user });
+  } catch (error: any) {
+    console.log(error.message);
+    return res.status(500).json({ message: 'Internal Server Error' });
+  }
+}

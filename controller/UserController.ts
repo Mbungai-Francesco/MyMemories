@@ -85,3 +85,75 @@ export const GetUser = async (req: Request, res: Response) => {
     return res.status(500).json({ message: 'Internal Server Error' });
   }
 }
+
+export const UpdateUser = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const updateUser = await db.user.update({
+      where: {
+        id: id,
+      },
+      data: {
+        ...req.body,
+      },
+    });
+
+    if (!updateUser) {
+      return res.status(400).json({ message: 'User not updated' });
+    }
+    return res.status(200).json({ message: 'User updated', data: updateUser });
+  } catch (error: any) {
+    console.log(error.message);
+    return res.status(500).json({ message: 'Internal Server Error' });
+  }
+}
+
+export const DeleteUser = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const deleteUser = await db.user.delete({
+      where: {
+        id: id,
+      },
+    });
+
+    if (!deleteUser) {
+      return res.status(400).json({ message: 'User not deleted' });
+    }
+    return res.status(200).json({ message: 'User deleted', data: deleteUser });
+  } catch (error: any) {
+    console.log(error.message);
+    return res.status(500).json({ message: 'Internal Server Error' });
+  }
+}
+
+export const loginUser = async (req: Request, res: Response) => {
+  try {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      return res.status(400).json({ message: 'email and password required' });
+    }
+
+    const user = await db.user.findUnique({
+      where: {
+        email,
+      },
+    });
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    if (user.password !== password) {
+      return res.status(400).json({ message: 'Invalid password' });
+    }
+
+    const token = generateToken(user.id);
+
+    return res.status(200).json({ message: 'User logged in', token, data: user });
+  } catch (error: any) {
+    console.log(error.message);
+    return res.status(500).json({ message: 'Internal Server Error' });
+  }
+}

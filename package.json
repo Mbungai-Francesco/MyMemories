@@ -1,0 +1,34 @@
+{
+  "name": "mymemory_backend",
+  "version": "1.0.0",
+  "description": "My memory backend app",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mbungai-Francesco/MyMemories.git"
+  },
+  "author": "Forche Mbungai Francesco",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mbungai-Francesco/MyMemories/issues"
+  },
+  "homepage": "https://github.com/Mbungai-Francesco/MyMemories#readme",
+  "dependencies": {
+    "@prisma/client": "^6.2.1",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.10.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "multer": "^1.4.5-lts.1",
+    "prisma": "^6.2.1",
+    "ts-node": "^10.9.2"
+  },
+  "devDependencies": {
+    "express": "^4.21.2",
+    "nodemon": "^3.1.9"
+  }
+}

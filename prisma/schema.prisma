@@ -35,7 +35,7 @@ model Tag {
   name        String  
   description String?
   color       String?
-  user        User?   @relation(fields: [userId], references: [id])
+  user        User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId      String @db.ObjectId
   notes       Note[]  @relation(fields: [noteIds], references: [id]) // Many Notes belong to one Category
   noteIds     String[] @db.ObjectId
@@ -47,7 +47,7 @@ model Category{
   id          String  @id @default(auto()) @map("_id") @db.ObjectId
   name        String
   description String?
-  user        User?   @relation(fields: [userId], references: [id])
+  user        User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId      String @db.ObjectId
   notes       Note[]  // One Category can have many Notes
   
@@ -64,6 +64,6 @@ model Note{
   tagIds      String[]  @db.ObjectId
   category    Category? @relation(fields: [categoryId], references: [id]) // Many Notes belong to one Category
   categoryId  String?   @db.ObjectId
-  user        User?   @relation(fields: [userId], references: [id])
+  user        User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId      String @db.ObjectId
 }

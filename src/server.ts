@@ -6,6 +6,7 @@ import { LoginRoute, SignUp } from '../routes/LoginRoute';
 import UserRoutes from '../routes/UserRoutes';
 import { authenticateToken } from '../middleware/auth';
 import NoteRoutes from '../routes/NoteRoutes';
+import TagRoutes from '../routes/TagRoutes';
 
 const app = express();
 app.use(express.json());
@@ -21,7 +22,8 @@ app.use(
   LoginRoute,
   authenticateToken,
   UserRoutes,
-  NoteRoutes
+  NoteRoutes,
+  TagRoutes
 )
 
 app.get('*', (req: Request, res: Response) => {

@@ -1,17 +1,17 @@
 @token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2Nzk5MzE4ZTBkNWE3NmIwZWIwNzZmOGYiLCJpYXQiOjE3MzgwOTMxNzksImV4cCI6MTczODE3OTU3OX0.NMBsjadHiaz4M6mjYyKhDwnzKKaqEUu3ciG3Ml-XqU8
 
 
-## GET all artists
+## GET all notes
 GET http://localhost:5000/api/notes
 # GET https://warm-reef-41256-e838c74ede11.herokuapp.com/api/notes
 Authorization: Bearer {{token}}
 
-### GET a user
+### GET a note
 GET http://localhost:5000/api/notes/67993d52adec9ff75d56d525
 Authorization: Bearer {{token}}
 
 
-### ADD a user
+### ADD a note
 POST http://localhost:5000/api/notes
 Content-Type: application/json
 Authorization: Bearer {{token}}
@@ -24,7 +24,7 @@ Authorization: Bearer {{token}}
   "userId" : "6799318e0d5a76b0eb076f8f"
 }
  
-### UPDATE a user
+### UPDATE a note
 PUT http://localhost:5000/api/notes/67993d52adec9ff75d56d525
 Content-Type: application/json
 Authorization: Bearer {{token}}
@@ -38,7 +38,7 @@ Authorization: Bearer {{token}}
 }
 
 
-###DELETE A user
+###DELETE A note
 DELETE http://localhost:5000/api/notes/677b0ac6327fb955afa58372
 Content-Type: application/json
 Authorization: Bearer {{token}}

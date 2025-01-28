@@ -1,0 +1,42 @@
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2Nzk5MzE4ZTBkNWE3NmIwZWIwNzZmOGYiLCJpYXQiOjE3MzgwOTMxNzksImV4cCI6MTczODE3OTU3OX0.NMBsjadHiaz4M6mjYyKhDwnzKKaqEUu3ciG3Ml-XqU8
+
+
+## GET all tags
+GET http://localhost:5000/api/tags
+# GET https://warm-reef-41256-e838c74ede11.herokuapp.com/api/tags
+Authorization: Bearer {{token}}
+
+### GET a tag
+GET http://localhost:5000/api/tags/679949f67088d40dd2494f78
+Authorization: Bearer {{token}}
+
+
+### ADD a tag
+POST http://localhost:5000/api/tags
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "name": "School",
+  "description": "School stuff",
+  "color": "pink",
+  "userId" : "6799318e0d5a76b0eb076f8f"
+}
+ 
+### UPDATE a tag
+PUT http://localhost:5000/api/tags/679949f67088d40dd2494f78
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "name": "School",
+  "description": "School stuff",
+  "color": "blue",
+  "userId" : "6799318e0d5a76b0eb076f8f"
+}
+
+
+###DELETE A tag
+DELETE http://localhost:5000/api/tags/677b0ac6327fb955afa58372
+Content-Type: application/json
+Authorization: Bearer {{token}}

@@ -7,6 +7,7 @@ import UserRoutes from '../routes/UserRoutes';
 import { authenticateToken } from '../middleware/auth';
 import NoteRoutes from '../routes/NoteRoutes';
 import TagRoutes from '../routes/TagRoutes';
+import CatRoutes from '../routes/CategoryRoutes';
 
 const app = express();
 app.use(express.json());
@@ -23,7 +24,8 @@ app.use(
   authenticateToken,
   UserRoutes,
   NoteRoutes,
-  TagRoutes
+  TagRoutes,
+  CatRoutes
 )
 
 app.get('*', (req: Request, res: Response) => {

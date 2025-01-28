@@ -1,0 +1,39 @@
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2Nzk5MzE4ZTBkNWE3NmIwZWIwNzZmOGYiLCJpYXQiOjE3MzgwOTMxNzksImV4cCI6MTczODE3OTU3OX0.NMBsjadHiaz4M6mjYyKhDwnzKKaqEUu3ciG3Ml-XqU8
+
+
+## GET all cats
+GET http://localhost:5000/api/cats
+# GET https://warm-reef-41256-e838c74ede11.herokuapp.com/api/cats
+Authorization: Bearer {{token}}
+
+### GET a Category
+GET http://localhost:5000/api/cats/67995443fbb0c017690a19cc
+Authorization: Bearer {{token}}
+
+
+### ADD a Category
+POST http://localhost:5000/api/cats
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "name": "School",
+  "description": "School stuff",
+  "userId" : "6799318e0d5a76b0eb076f8f"
+}
+ 
+### UPDATE a Category
+PUT http://localhost:5000/api/cats/67995443fbb0c017690a19cc
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "name": "Work",
+  "description": "Work stuff"
+}
+
+
+###DELETE A Category
+DELETE http://localhost:5000/api/cats/67995443fbb0c017690a19cc
+Content-Type: application/json
+Authorization: Bearer {{token}}

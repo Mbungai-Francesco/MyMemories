@@ -1,0 +1,50 @@
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2Nzk5MzE4ZTBkNWE3NmIwZWIwNzZmOGYiLCJpYXQiOjE3MzgwOTMxNzksImV4cCI6MTczODE3OTU3OX0.NMBsjadHiaz4M6mjYyKhDwnzKKaqEUu3ciG3Ml-XqU8
+
+
+## GET all artists
+GET http://localhost:5000/api/users
+# GET https://warm-reef-41256-e838c74ede11.herokuapp.com/api/users
+Authorization: Bearer {{token}}
+
+### GET a user
+GET http://localhost:5000/api/users/6799318e0d5a76b0eb076f8f
+Authorization: Bearer {{token}}
+
+
+### ADD a user
+POST http://localhost:5000/api/users
+Content-Type: application/json
+
+{
+  "firstname": "Valdez",
+  "lastname": "Nzukam",
+  "email": "valdez@gmail.com",
+  "password": "Root@123"
+}
+ 
+### UPDATE a user
+PUT http://localhost:5000/api/users/676dee5ca492082befb2031e
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "firstname": "Valdez",
+  "lastname": "Nzukam",
+  "email": "mbungaimirabele@gmail.com",
+  "password": "root",
+}
+
+
+###DELETE A user
+DELETE http://localhost:5000/api/users/677b0ac6327fb955afa58372
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+###Login User
+POST http://localhost:5000/api/login
+Content-Type: application/json
+
+{
+  "email": "valdez@gmail.com",
+  "password": "Root@123"
+}

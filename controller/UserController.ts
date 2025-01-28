@@ -2,11 +2,11 @@ import { db } from '../lib/db';
 import { Request, Response } from 'express';
 import { generateToken } from '../utils/jwt';
 
-export const CreateUser = async (req: Request, res: Response) => {
+export const CreateUser = async (req: Request, res: Response)  => {
   try {
-    const { email } = await req.body;
+    const { email, firstname, password } = await req.body;
 
-    if (!email) {
+    if (!email || !firstname || !password) {
       return res.status(400).json({
         message:
           'email is required. please try again with these value added',

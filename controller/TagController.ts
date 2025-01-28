@@ -4,8 +4,8 @@ import { Request, Response } from 'express';
 export const CreateTag = async (req: Request, res: Response) => {
   try{
     const { name, userId } = req.body
-    if(!name){
-      return res.status(400).json({ message: 'Name are required' });
+    if(!name || !userId){
+      return res.status(400).json({ message: 'Name and userId are required' });
     }
 
     const findTag = await db.tag.findUnique({
@@ -119,16 +119,16 @@ export const deleteTag = async (req: Request, res: Response) => {
       return res.status(404).json({ message: 'Tag not found' });
     }
 
-    await db.tag.delete({
+    const deleteTag = await db.tag.delete({
       where: {
         id: id,
       },
     });
 
-    if(!tag){
+    if(!deleteTag){
       return res.status(400).json({ message: 'Tag not deleted' });
     }
-    return res.status(200).json({ message: 'Tag deleted' });
+    return res.status(200).json({ message: 'Tag deleted', data: deleteTag });
   } catch (error: any) {
     console.log(error.message);
     return res.status(500).json({ message: 'Internal Server Error' });

@@ -9,3 +9,10 @@ export interface Category {
   userId: string;
   notes: Note[];
 }
+
+export interface CategoryDto {
+  id: string;
+  name: string;
+  description?: string;
+  userId: string;
+}

@@ -8,7 +8,15 @@ export interface User {
   lastname?: string;
   password: string;
   email: string;
+  jwt ?: string
   tags: Tag[];
   categories: Category[];
   notes: Note[];
+}
+
+export interface UserDto {
+  firstname: string;
+  lastname?: string;
+  password: string;
+  email: string;
 }

@@ -15,3 +15,13 @@ export interface Note {
   user?: User;
   userId: string;
 }
+
+export interface NoteDto {
+  id: string;
+  title: string;
+  date: Date;
+  time: string;
+  tagIds: string[];
+  categoryId: string;
+  userId: string;
+}

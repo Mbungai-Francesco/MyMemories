@@ -11,3 +11,11 @@ export interface Tag {
   notes: Note[];
   noteIds: string[];
 }
+
+export interface TagDto {
+  id: string;
+  name: string;
+  description?: string;
+  color?: string;
+  userId: string;
+}

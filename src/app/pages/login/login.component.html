@@ -1,0 +1,27 @@
+<main class="flex bg-log_bg w-full h-screen font-poppins">
+  <div class="w-1/2 flex items-center">
+    <div class="pl-16 text-white">
+      <h1 class="text-[2.575em] mb-[0.7em] font-semibold">Capture Your Thoughts, Unleash Your Creativity!</h1>
+      <p>Where Ideas Meet Ink - Jot Down Your Thoughts,<br> Organize Your Work, and Unleash Your Creativity with <br> Our Note-Taking Platform!</p>
+    </div>
+  </div>
+  <div class="w-1/2 bg-white flex flex-col items-center justify-center">
+    <form class="flex flex-col items-center w-full py-[5vh] px-0">
+      <div class="w-fit items-center text-base mb-8 font-medium text-[1.3em]"> <p>Login To Your Account</p> <div class="h-[3px] w-1/2 bg-myOrange-100 m-auto"></div> </div>
+      <label class="w-[65%]" for="">
+        <input class="w-full outline-none focus:bg-[#f4f4f5] bg-[#f4f4f5] py-[2vh] px-[2%] text-base font-medium my-[.5em] mx-0 rounded-[0.3125em] text-form_text shadow-md border-log_bg border-0" type="text" name="" id="" placeholder="User Name">
+        <p [class]="'text-log_bg w-full italic mb-[0.5em] font-medium text-right'">Last Name can't be empty</p> 
+      </label>
+      <label class="w-[65%]" for="">
+        <input class="w-full outline-none focus:bg-[#f4f4f5] bg-[#f4f4f5] py-[2vh] px-[2%] text-base font-medium my-[.5em] mx-0 rounded-[0.3125em] text-form_text shadow-md border-log_bg border-0" type="email" autocomplete="off" name="" id="" placeholder="Email">
+        <p [class]="'text-log_bg w-full italic mb-[0.5em] font-medium text-right'">Looks like this not an email</p> 
+      </label>
+      <label class="w-[65%]" for="">
+        <input class="w-full outline-none focus:bg-[#f4f4f5] bg-[#f4f4f5] py-[2vh] px-[2%] text-base font-medium my-[.5em] mx-0 rounded-[0.3125em] text-form_text shadow-md border-log_bg border-0" type="password" name="" id="" placeholder="Password">
+        <p [class]="'text-log_bg w-full italic mb-[0.5em] font-medium text-right'">Password can't be empty</p>
+      </label> 
+      <button id="logInSubmit" type="button">Login</button>
+      <p class="">Click here to <a href="./signUp.html">signUp</a></p>
+    </form> 
+  </div>
+</main>

@@ -1,0 +1,5 @@
+.myOnline{
+  background: linear-gradient(to right,#fa6544,#e85444);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text
+}

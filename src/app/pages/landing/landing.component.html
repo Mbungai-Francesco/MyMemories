@@ -1,9 +1,24 @@
-<div>
-  <div>
-    <p>myMemory</p>
-    <div>
-      <p>Welcome </p>
+<div class="p-12 h-screen flex flex-col">
+  <div class="flex justify-between items-center">
+    <p class="text-[2em] font-semibold">myMEMORY</p>
+    <div class="flex justify-between items-center space-x-3">
+      <p>Welcome, {{user.firstname || 'Guest'}} 👋</p>
+      <app-button [text]="user.id ? 'Log Out' : 'Log in'"/>
     </div>
   </div>
-  <div></div>
+  <main class="w-fit text-center m-auto">
+    <div>
+      <p class="text-[4em] mt-0 mb-[0.4em] font-bold">Organise Your Ideas With <br> Notes <span class="myOnline">Online</span></p>
+    </div>
+    <p class="text-[1.5em] font-light opacity-70 italic mt-0 mb-[1.3em]">
+      myMEMORY is an online tool for taking notes.<br> You can create, edit, delete and share notes.
+    </p>
+    <div class="rounded border-[3.5px] border-black border-y-[2px] w-fit m-auto">
+      <input 
+        type="button" 
+        class="relative text-[1.2em] font-normal text-white bg-black py-[.6em] px-[.8em] bottom-[7px] rounded-[0.3125em] border-[1.3px] border-white w-fit cursor-pointer duration-[.5s] hover:bottom-0" 
+        value="Create a note"
+      >
+    </div>
+  </main>
 </div>

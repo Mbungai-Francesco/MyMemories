@@ -20,8 +20,11 @@
         <input class="w-full outline-none focus:bg-[#f4f4f5] bg-[#f4f4f5] py-[2vh] px-[2%] text-base font-medium my-[.5em] mx-0 rounded-[0.3125em] text-form_text shadow-md border-log_bg border-0" type="password" name="" id="" placeholder="Password">
         <p [class]="'text-log_bg w-full italic mb-[0.5em] font-medium text-right'">Password can't be empty</p>
       </label> 
-      <button id="logInSubmit" type="button">Login</button>
-      <p class="">Click here to <a href="./signUp.html">signUp</a></p>
+      <app-button  
+        text="Login" 
+        class="cursor-pointer w-[40%] py-[2vh] text-[1em] bg-myOrange-200 text-center rounded-lg mb-4"
+      />
+      <p class="font-medium text-lg"><span class="opacity-30">Click here to</span> <span class="text-myOrange-200"> signUp</span></p>
     </form> 
   </div>
 </main>

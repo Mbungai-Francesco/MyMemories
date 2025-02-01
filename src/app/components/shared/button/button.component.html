@@ -1,6 +1,10 @@
-<div
-  routerLink="/{{ link }}"
-  class=""
->
-  <p class="text-white">{{ text }}</p>
-</div>
+@if(link){
+  <div routerLink="/{{ link }}" class="">
+    <p class="text-white">{{ text }}</p>
+  </div>
+
+}@else {
+  <div class="">
+    <p class="text-white">{{ text }}</p>
+  </div>
+}

@@ -1,1 +1,37 @@
-<p>sign-up works!</p>
+<main class="flex bg-log_bg w-full h-screen font-poppins">
+  <div class="w-1/2 flex items-center">
+    <div class="px-16 text-white">
+      <h1 class="text-[2.575em] mb-[0.7em] font-semibold">Capture Your Thoughts, Unleash Your Creativity!</h1>
+      <p>Where Ideas Meet Ink - Jot Down Your Thoughts,<br> Organize Your Work, and Unleash Your Creativity with <br> Our Note-Taking Platform!</p>
+    </div>
+  </div>
+  <div class="w-1/2 bg-white flex flex-col items-center justify-center">
+    <form [formGroup]="signUp" class="flex flex-col items-center w-full py-[5vh] px-0">
+      <div class="w-fit items-center text-base mb-8 font-medium text-[1.30em]"> <p class="mb-1">Get yourself an account</p> <div class="h-[3px] w-1/2 bg-myOrange-100 m-auto"></div> </div>
+      <label class="w-[65%]" for="">
+        <input formControlName="firstname" class="w-full outline-none focus:bg-[#f4f4f5] bg-[#f4f4f5] py-[2vh] px-[2%] text-base font-medium my-[.5em] mx-0 rounded-[0.3125em] text-form_text shadow-md border-log_bg border-0" type="text" autocomplete="off" name="" id="" placeholder="Firstname">
+        <p [class]="(signUp.get('firstname')?.invalid && signUp.get('firstname')?.touched) ? 'text-log_bg w-full italic mb-[0.5em] font-medium text-right' : 'hidden'">First name cannot be empty</p> 
+      </label>
+      <label class="w-[65%]" for="">
+        <input formControlName="lastname" class="w-full outline-none focus:bg-[#f4f4f5] bg-[#f4f4f5] py-[2vh] px-[2%] text-base font-medium my-[.5em] mx-0 rounded-[0.3125em] text-form_text shadow-md border-log_bg border-0" type="text" autocomplete="off" name="" id="" placeholder="Lastname">
+      </label>
+      <label class="w-[65%]" for="">
+        <input formControlName="email" class="w-full outline-none focus:bg-[#f4f4f5] bg-[#f4f4f5] py-[2vh] px-[2%] text-base font-medium my-[.5em] mx-0 rounded-[0.3125em] text-form_text shadow-md border-log_bg border-0" type="email" autocomplete="off" name="" id="" placeholder="Email">
+        <p [class]="(signUp.get('email')?.invalid && signUp.get('email')?.touched) ? 'text-log_bg w-full italic mb-[0.5em] font-medium text-right' : 'hidden'">Looks like this not an email</p> 
+      </label>
+      <label class="w-[65%]" for="">
+        <input formControlName="password" class="w-full outline-none focus:bg-[#f4f4f5] bg-[#f4f4f5] py-[2vh] px-[2%] text-base font-medium my-[.5em] mx-0 rounded-[0.3125em] text-form_text shadow-md border-log_bg border-0" type="password" name="" id="" placeholder="Password">
+        <p [class]="(signUp.get('password')?.value.length==0 && signUp.get('password')?.touched) ? 'text-log_bg w-full italic mb-[0.5em] font-medium text-right' : 'hidden'">Password can't be empty</p>
+        <p [class]="((signUp.get('password')?.invalid && signUp.get('password')?.value.length!=0) && signUp.get('password')?.touched) ? 'text-log_bg w-full italic mb-[0.5em] font-medium text-right' : 'hidden'">Password must contain atleast 1 uppercase, 1 number and 6 letters</p>
+        <!-- <p [class]="invalidCredentials ? 'text-log_bg w-full italic mb-[0.5em] font-medium' : 'hidden'">Invalid credentials</p> -->
+      </label> 
+      <input 
+        value="Sign Up" 
+        type="submit" 
+        [disabled]="signUp.invalid"
+        class="text-white cursor-pointer w-[40%] py-[2vh] text-[1em] bg-myOrange-200 text-center rounded-lg my-4"
+      />
+      <p class="font-medium text-lg"><span class="opacity-30" >Click here to</span> <span class="text-myOrange-200 cursor-pointer" routerLink="/login"> Login</span></p>
+    </form> 
+  </div>
+</main>

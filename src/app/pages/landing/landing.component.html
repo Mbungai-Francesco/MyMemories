@@ -22,6 +22,7 @@
         type="button" 
         class="relative text-[1.2em] font-normal text-white bg-black py-[.6em] px-[.8em] bottom-[7px] rounded-[0.3125em] border-[1.3px] border-white w-fit cursor-pointer duration-[.5s] hover:bottom-0" 
         value="Create a note"
+        [routerLink]="user.id ? '/note' : '/login'"
       >
     </div>
   </main>

@@ -1,5 +1,5 @@
 import express from 'express';
-import { CreateUser, loginUser } from '../controller/UserController';
+import { CreateUser, GetUserByMail, loginUser } from '../controller/UserController';
 
 const SignUp = express.Router()
 const LoginRoute = express.Router()
@@ -7,5 +7,6 @@ const LoginRoute = express.Router()
 SignUp.post('/users', CreateUser);
 
 LoginRoute.post('/login', loginUser);
+LoginRoute.post('/users/mail/:mail', GetUserByMail);
  
 export { LoginRoute, SignUp};

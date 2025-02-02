@@ -3,14 +3,17 @@ import { Request, Response } from 'express';
 
 export const CreateNote = async (req: Request, res: Response) => {
   try{
-    const { title, date, time, content, userId } = req.body
-    if(!title || !date || !time || !content || !userId){
+    const { title, date, time, userId } = req.body
+    if(!title || !date || !time || !userId){
       return res.status(400).json({ message: 'All fields are required' });
     }
 
     const findNote = await db.note.findUnique({
       where: {
-        title,
+        title_userId:{
+          title: title,
+          userId: userId
+        },
       },
     })
 

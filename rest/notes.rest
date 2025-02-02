@@ -1,4 +1,4 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2Nzk5MzE4ZTBkNWE3NmIwZWIwNzZmOGYiLCJpYXQiOjE3MzgwOTMxNzksImV4cCI6MTczODE3OTU3OX0.NMBsjadHiaz4M6mjYyKhDwnzKKaqEUu3ciG3Ml-XqU8
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2Nzk5MzE4ZTBkNWE3NmIwZWIwNzZmOGYiLCJpYXQiOjE3MzgyMzk5ODUsImV4cCI6MTczODMyNjM4NX0.HItec69FfdqNS5V_XiD40mVO8Kpj373yuiv0c7GSc3Q
 
 
 ## GET all notes
@@ -20,7 +20,6 @@ Authorization: Bearer {{token}}
   "title": "My First Note",
   "date": "2024-01-15T00:00:00.000Z",
   "time": "21:24",
-  "content": "This is the content of my first note",
   "userId" : "6799318e0d5a76b0eb076f8f"
 }
  
@@ -34,7 +33,8 @@ Authorization: Bearer {{token}}
   "date": "2024-01-15T00:00:00.000Z",
   "time": "21:30",
   "content": "This is the content of my updated note",
-  "userId" : "6799318e0d5a76b0eb076f8f"
+  "userId" : "6799318e0d5a76b0eb076f8f",
+  "categoryId" : "67995443fbb0c017690a19cc"
 }
 
 

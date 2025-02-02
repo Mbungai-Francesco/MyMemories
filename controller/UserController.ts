@@ -86,6 +86,30 @@ export const GetUser = async (req: Request, res: Response) => {
   }
 }
 
+export const GetUserByMail = async (req: Request, res: Response) => {
+  try {
+    const { mail } = req.params;
+    const user = await db.user.findUnique({
+      where: {
+        email: mail,
+      },
+      include: {
+        tags: true,
+        categories: true,
+        notes: true
+      }
+    });
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    return res.status(200).json({ message: 'User found', data: user });
+  } catch (error: any) {
+    console.log(error.message);
+    return res.status(500).json({ message: 'Internal Server Error' });
+  }
+}
+
 export const UpdateUser = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;

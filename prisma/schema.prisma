@@ -56,7 +56,7 @@ model Category{
 
 model Note{
   id          String  @id @default(auto()) @map("_id") @db.ObjectId
-  title       String  @unique
+  title       String  
   date        DateTime
   time        String
   content     String
@@ -66,4 +66,6 @@ model Note{
   categoryId  String?   @db.ObjectId
   user        User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId      String @db.ObjectId
+
+  @@unique([title, userId])
 }

@@ -3,6 +3,7 @@ import {
   CreateUser,
   DeleteUser,
   GetUser,
+  GetUserByMail,
   GetUsers,
   loginUser,
   UpdateUser

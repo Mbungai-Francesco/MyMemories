@@ -8,7 +8,7 @@ import {
   ValidationErrors,
   ValidatorFn,
 } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { UserDto } from '../../types';
 import { createUser } from '../../api/userApi';
 
@@ -23,7 +23,10 @@ export class SignUpComponent {
   signUp!: FormGroup;
   invalidCredentials = false;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.signUp = this.fb.group({
@@ -65,6 +68,7 @@ export class SignUpComponent {
       }
       createUser(user).then((res) =>{
         if(res){
+          this.router.navigate(['/notes']); // Redirect to login page
           console.log('Sign up successful:', res);
           // this.invalidCredentials = false;
         }else{

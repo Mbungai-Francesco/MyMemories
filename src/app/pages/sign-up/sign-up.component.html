@@ -30,6 +30,7 @@
         type="submit" 
         [disabled]="signUp.invalid"
         class="text-white cursor-pointer w-[40%] py-[2vh] text-[1em] bg-myOrange-200 text-center rounded-lg my-4"
+        (click)="sign_up()"
       />
       <p class="font-medium text-lg"><span class="opacity-30" >Click here to</span> <span class="text-myOrange-200 cursor-pointer" routerLink="/login"> Login</span></p>
     </form> 

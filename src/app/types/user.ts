@@ -20,3 +20,8 @@ export interface UserDto {
   password: string;
   email: string;
 }
+
+export interface UserLogin {
+  email: string;
+  password: string;
+}

@@ -8,22 +8,29 @@ import {
   ValidationErrors, 
   ValidatorFn
 } from '@angular/forms';
-import { loginUser } from '../../api/userApi';
-import { RouterLink } from '@angular/router';
+import { getUserByMail, loginUser } from '../../api/userApi';
+import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../services/auth/auth.service';
+import { provideAuth, getAuth } from '@angular/fire/auth';
+import { UserService } from '../../services/user/user.service';
+import { UserLogin } from '../../types';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ ReactiveFormsModule, RouterLink ],
+  imports: [ ReactiveFormsModule, RouterLink, ],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrl: './login.component.css',
 })
 export class LoginComponent {
   loginForm!: FormGroup;
   invalidCredentials = false;
   
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router : Router,
+    private userService : UserService
   ){}
 
   ngOnInit(){
@@ -36,10 +43,12 @@ export class LoginComponent {
   login(){
     if(this.loginForm.valid){
       const email = this.loginForm.value.email as string;
-      const password = this.loginForm.value.email as string;
+      const password = this.loginForm.value.password as string;
       loginUser(email, password).then((res) =>{
-        if(res){
+        if(res){ 
           console.log('Login successful:', res);
+          this.userService.setUser(res)
+          this.router.navigate(['/notes']);
           this.invalidCredentials = false;
         }
         else{
@@ -49,6 +58,23 @@ export class LoginComponent {
       })
       console.log(this.loginForm.value);
     }
+  }
+
+  loginWithGoogle(){
+    this.authService.googleSignIn()
+    .then(res => {
+      getUserByMail(res.user.email || '').then(user =>{
+        if(user){
+          console.log('User:', user);
+          this.userService.setUser(user)
+          this.router.navigate(['/notes']);
+        }
+        else{
+          console.log('User not found');
+        }
+      })
+    })
+    .catch(error => console.error(error));
   }
 }
 

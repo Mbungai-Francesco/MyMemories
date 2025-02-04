@@ -44,6 +44,18 @@ export const getUser = async (id : string, jwt : string) => {
   }
 }
 
+export const getUserByMail = async (mail : string) => {
+  try{
+    const res = await axios.get(`${link}/api/mail/${mail}`)
+    console.log(res.data.data);
+    return res.data.data as User
+  }
+  catch(error){
+    console.error('Error:', error);
+    return null
+  }
+}
+
 export const updateUser = async (user : User, jwt : string) => {
   try{
     const{ id,tags,notes,categories, ...noId} = user

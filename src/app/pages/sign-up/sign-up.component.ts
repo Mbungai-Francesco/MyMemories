@@ -11,6 +11,9 @@ import {
 import { Router, RouterLink } from '@angular/router';
 import { UserDto } from '../../types';
 import { createUser } from '../../api/userApi';
+import { UserService } from '../../services/user/user.service';
+import { JwtService } from '../../services/jwt/jwt.service';
+import { NavbarServiceService } from '../../services/navbar/navbar-service.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -25,7 +28,10 @@ export class SignUpComponent {
 
   constructor(
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private userService : UserService,
+    private jwtService : JwtService,
+    private navbarService : NavbarServiceService
   ) {}
 
   ngOnInit() {
@@ -35,6 +41,7 @@ export class SignUpComponent {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, this.strongPasswordValidator()]],
     });
+    this.navbarService.triggerNavAction()
   }
 
   // Custom password validator: At least 6 characters, with a number & uppercase letter
@@ -68,6 +75,8 @@ export class SignUpComponent {
       }
       createUser(user).then((res) =>{
         if(res){
+          this.userService.setUser(res)
+          this.jwtService.setJwt(res.jwt || '')
           this.router.navigate(['/notes']); // Redirect to login page
           console.log('Sign up successful:', res);
           // this.invalidCredentials = false;

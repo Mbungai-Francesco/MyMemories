@@ -1,0 +1,17 @@
+<div class="w-full p-4 h-full bg-myWhite-100">
+  <div class="flex mb-4 justify-between items-center">
+    <p class="font-semibold text-2xl">myMEMORY</p>
+    <div class="bg-black w-fit rounded-md flex items-center p-[3px]">
+      <lucide-icon [name]="icons.X" color="white" size="20"></lucide-icon>
+    </div>
+  </div>
+  <div class="py-2">
+    <app-nav-button [icon]="icons.PlusCircle" text="Create Note"/>
+    <app-nav-button [icon]="icons.Notebook" link="notes" text="Notes"/>
+    <app-nav-button [icon]="icons.Settings" link="settings" text="Settings"/>
+  </div>
+  <div>
+    <p class="font-medium text-[1.3em]">Tags</p>
+    <div></div>
+  </div>
+</div>

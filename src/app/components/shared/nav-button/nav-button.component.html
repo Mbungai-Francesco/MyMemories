@@ -1,0 +1,11 @@
+@if(link){
+  <div [class]="'flex items-center mb-2 hover:bg-myWhite-200 p-2 cursor-pointer rounded-lg' + (checkRoute() ? ' bg-myWhite-200' : ' ')" routerLink="/{{link}}">
+    <lucide-icon [name]="icon" color="black" size="20"></lucide-icon>
+    <p class="ml-4 text-lg font-normal">{{text}}</p>
+  </div>
+}@else{
+  <div [class]="'flex items-center mb-2 hover:bg-myWhite-200 p-2 cursor-pointer rounded-lg' + (checkRoute() ? ' bg-myWhite-200' : ' ')">
+    <lucide-icon [name]="icon" color="black" size="20"></lucide-icon>
+    <p class="ml-4 text-lg font-normal">{{text}}</p>
+  </div>
+}

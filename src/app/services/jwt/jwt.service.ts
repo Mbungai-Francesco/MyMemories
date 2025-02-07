@@ -23,8 +23,8 @@ export class JwtService {
     this.jwtSubject.next(jwt)
     localStorage.setItem('jwt', JSON.stringify(jwt || ''));
   }
-  updateJwt(jwt: string) {
-    this.setJwt(jwt)
-    localStorage.setItem('jwt', JSON.stringify(jwt))
-  }
+  // updateJwt(jwt: string) {
+  //   this.setJwt(jwt)
+  //   localStorage.setItem('jwt', JSON.stringify(jwt))
+  // }
 }

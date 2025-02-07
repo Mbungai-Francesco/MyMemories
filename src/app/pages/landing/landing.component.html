@@ -2,13 +2,16 @@
   <div class="flex justify-between items-center">
     <p class="text-[2em] font-semibold">myMEMORY</p>
     <div class="flex justify-between items-center space-x-3">
-      <p>Welcome, {{user.firstname || 'Guest'}} 👋</p>
+      <p>Welcome, {{user? user.firstname : 'Guest'}} 👋</p>
       <app-button 
         link="login" 
-        [text]="user.id ? 'Log Out' : 'Log in'" 
+        [text]="user ? 'Log Out' : 'Log in'" 
         class="cursor-pointer px-[1.5em] py-[0.6em] text-[1em] bg-myOrange-100 w-fit rounded-lg"
       />
     </div>
+    <!-- <div class="spinner-overlay">
+      <div class="spinner"></div>
+    </div> -->
   </div>
   <main class="w-fit text-center m-auto">
     <div>
@@ -22,7 +25,7 @@
         type="button" 
         class="relative text-[1.2em] font-normal text-white bg-black py-[.6em] px-[.8em] bottom-[7px] rounded-[0.3125em] border-[1.3px] border-white w-fit cursor-pointer duration-[.5s] hover:bottom-0" 
         value="Create a note"
-        [routerLink]="user.id ? '/note' : '/login'"
+        [routerLink]="id ? '/notes' : '/login'"
       >
     </div>
   </main>

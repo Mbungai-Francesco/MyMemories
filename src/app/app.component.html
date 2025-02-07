@@ -1,3 +1,8 @@
-<div class="font-rubik box-border">
-  <router-outlet/>
+<div class="h-screen font-rubik flex w-full">
+  <div [class]="'w-[15%] h-screen' + (active ? ' ' : ' hidden')">
+    <app-navbar/>
+  </div>
+  <div class="flex-grow h-full font-rubik box-border">
+    <router-outlet/>
+  </div>
 </div>

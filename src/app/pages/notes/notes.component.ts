@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NavbarServiceService } from '../../services/navbar/navbar-service.service';
 
 @Component({
   selector: 'app-notes',
@@ -9,4 +10,13 @@ import { Component } from '@angular/core';
 })
 export class NotesComponent {
 
+  constructor(
+    private navbarService : NavbarServiceService
+  ){
+    navbarService.triggerNavAction()
+  }
+
+  ngOnInit(){
+    this.navbarService.triggerNavAction()
+  }
 }

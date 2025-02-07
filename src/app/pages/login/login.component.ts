@@ -14,6 +14,8 @@ import { AuthService } from '../../services/auth/auth.service';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { UserService } from '../../services/user/user.service';
 import { UserLogin } from '../../types';
+import { JwtService } from '../../services/jwt/jwt.service';
+import { NavbarServiceService } from '../../services/navbar/navbar-service.service';
 
 @Component({
   selector: 'app-login',
@@ -30,7 +32,9 @@ export class LoginComponent {
     private fb: FormBuilder,
     private authService: AuthService,
     private router : Router,
-    private userService : UserService
+    private userService : UserService,
+    private jwtService : JwtService,
+    private navbarService : NavbarServiceService
   ){}
 
   ngOnInit(){
@@ -38,6 +42,7 @@ export class LoginComponent {
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
     });
+    this.navbarService.triggerNavAction()
   }
 
   login(){
@@ -48,6 +53,7 @@ export class LoginComponent {
         if(res){ 
           console.log('Login successful:', res);
           this.userService.setUser(res)
+          this.jwtService.setJwt(res.jwt || '')
           this.router.navigate(['/notes']);
           this.invalidCredentials = false;
         }

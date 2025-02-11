@@ -42,4 +42,4 @@ testem.log
 Thumbs.db
 
 # keys
-/src/environments/environments.ts
+/src/environments/environment.ts

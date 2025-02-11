@@ -4,6 +4,8 @@ import { NavButtonComponent } from "../nav-button/nav-button.component";
 import { TagComponent } from '../../notes/tag/tag.component';
 import { Tag, User } from '../../../types';
 import { UserService } from '../../../services/user/user.service';
+import { getUserTags } from '../../../api/tagsApi';
+import { JwtService } from '../../../services/jwt/jwt.service';
 
 
 @Component({
@@ -18,11 +20,15 @@ export class NavbarComponent {
   user !: User
 
   constructor(
-    private userService : UserService
+    private jwtService : JwtService
   ){
-    userService.user$.subscribe(use => {
-      this.user = use
-      this.tags = use.tags
+    jwtService.jwt$.subscribe(jwt => {
+      if(jwt) getUserTags(jwtService.getId(),jwt).then(res =>{
+        if(res){
+          console.log(res);
+          this.tags = res
+        }
+      })
     })
   }
 

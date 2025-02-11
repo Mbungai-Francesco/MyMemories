@@ -21,6 +21,7 @@ export class AppComponent {
 
   user !: User
   id = ''
+  jwt !: string | null
 
   active = false
 
@@ -30,20 +31,24 @@ export class AppComponent {
     private jwtService : JwtService,
     private navbarService : NavbarServiceService
   ){
-    jwtService.jwt$.subscribe(res =>{
-      if(res){
-        const decodedToken: any = jwtDecode(res); 
-        this.id = decodedToken.userId
-        console.log('logging',decodedToken);
-        // console.log('logging',decodedToken.exp - decodedToken.iat);
-        
-        // getUser(this.id,res) .then(use =>{
-        //   if(use){
-        //     userService.setUser(use)
-        //   }
-        // })    
-      }
-    })
+    this.jwt = sessionStorage.getItem('jwt');
+    this.jwt = this.jwt ? JSON.parse(this.jwt) : null
+    if(this.jwt){
+      console.log('jwt',this.jwt);
+      
+      const decodedToken: any = jwtDecode(this.jwt); 
+      this.id = decodedToken.userId
+      // console.log('logging',decodedToken);
+      // console.log('logging',decodedToken.exp - decodedToken.iat);
+      
+      getUser(this.id,this.jwt) .then(use =>{
+        if(use){
+          console.log(use);
+          userService.setUser(use)
+          jwtService.setJwt(use.jwt || '')
+        }
+      })    
+    }
     navbarService.navAction$.subscribe(()=>{
       this.checkRoute()
     })

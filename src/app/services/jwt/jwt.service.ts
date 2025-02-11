@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { jwtDecode } from 'jwt-decode';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -22,5 +23,10 @@ export class JwtService {
   setJwt(jwt: string) {
     this.jwtSubject.next(jwt);
     sessionStorage.setItem('jwt', JSON.stringify(jwt || ''));
+  }
+
+  getId() {
+    const decodedToken: any = jwtDecode(this.jwtSubject.getValue());
+    return decodedToken.userId;
   }
 }

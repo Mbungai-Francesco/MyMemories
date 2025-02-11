@@ -10,3 +10,13 @@ export const conf = (jwt : string) => {
     }
   }
 }
+// export const getConf = (jwt : string, bod : any) => {
+//   return {
+//     headers: {
+//       Authorization: `Bearer ${jwt}`
+//     },
+//     body:{
+//       ...bod
+//     }
+//   }
+// }

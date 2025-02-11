@@ -31,6 +31,18 @@ export const getTags = async (jwt : string) => {
   }
 }
 
+export const getUserTags = async (userId: string, jwt : string) => {
+  try{
+    const res = await axios.get(`${link}/${route}/user/${userId}`, conf(jwt))
+    console.log(res.data.data);
+    return res.data.data as Tag[]
+  }
+  catch(error){
+    console.error('Error:', error);
+    return null
+  }
+}
+
 export const getTag = async (id : string,jwt : string) => {
   try{
     const res = await axios.get(`${link}/${route}/${id}`, conf(jwt))

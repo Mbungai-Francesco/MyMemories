@@ -20,6 +20,7 @@ export class NotesComponent {
     private userService : UserService
   ){
     navbarService.triggerNavAction()
+    
     userService.user$.subscribe(use => {
       this.user = use
       this.tags = use.tags

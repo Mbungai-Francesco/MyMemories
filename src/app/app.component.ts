@@ -41,13 +41,12 @@ export class AppComponent {
       // console.log('logging',decodedToken);
       // console.log('logging',decodedToken.exp - decodedToken.iat);
       
-      getUser(this.id,this.jwt) .then(use =>{
-        if(use){
-          console.log(use);
-          userService.setUser(use)
-          jwtService.setJwt(use.jwt || '')
-        }
-      })    
+      // getUser(this.id,this.jwt) .then(use =>{
+      //   if(use){
+      //     console.log(use);
+      //     userService.setUser(use)
+      //   }
+      // })    
     }
     navbarService.navAction$.subscribe(()=>{
       this.checkRoute()

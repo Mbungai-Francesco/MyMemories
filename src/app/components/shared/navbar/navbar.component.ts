@@ -6,6 +6,7 @@ import { Tag, User } from '../../../types';
 import { UserService } from '../../../services/user/user.service';
 import { getUserTags } from '../../../api/tagsApi';
 import { JwtService } from '../../../services/jwt/jwt.service';
+import { getUser } from '../../../api/userApi';
 
 
 @Component({
@@ -23,12 +24,17 @@ export class NavbarComponent {
     private jwtService : JwtService
   ){
     jwtService.jwt$.subscribe(jwt => {
-      if(jwt) getUserTags(jwtService.getId(),jwt).then(res =>{
-        if(res){
-          console.log(res);
-          this.tags = res
-        }
-      })
+      if(jwt){
+        getUserTags(jwtService.getId(),jwt).then(res =>{
+          if(res){
+            console.log(res);
+            this.tags = res
+          }
+        })
+        getUser(jwtService.getId(),jwt).then(res =>{
+          if(res) this.user = res
+        })
+      }
     })
   }
 

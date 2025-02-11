@@ -55,6 +55,31 @@ export const GetTags = async (req: Request, res: Response) => {
   }
 }
 
+export const GetUserTags = async (req: Request, res: Response) => {
+  try {
+    const { userId } = req.params
+    if( !userId){
+      return res.status(400).json({ message: 'Name and userId are required' });
+    }
+
+    const tags = await db.tag.findMany({
+      where: {
+        userId: userId
+      },
+      include:{
+        notes: true
+      }
+    });
+    if (!tags || tags.length === 0) {
+      return res.status(404).json({ message: 'No tags found' });
+    }
+    return res.status(200).json({ message: 'Tags found', data: tags });
+  } catch (error: any) {
+    console.log(error.message);
+    return res.status(500).json({ message: 'Internal Server Error' });
+  }
+}
+
 export const GetTag = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;

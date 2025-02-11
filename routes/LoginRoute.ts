@@ -7,6 +7,6 @@ const LoginRoute = express.Router()
 SignUp.post('/users', CreateUser);
 
 LoginRoute.post('/login', loginUser);
-LoginRoute.post('/users/mail/:mail', GetUserByMail);
+LoginRoute.get('/mail/:mail', GetUserByMail);
  
 export { LoginRoute, SignUp};

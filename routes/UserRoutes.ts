@@ -1,11 +1,8 @@
 import express from 'express';
 import {
-  CreateUser,
   DeleteUser,
   GetUser,
-  GetUserByMail,
   GetUsers,
-  loginUser,
   UpdateUser
 } from '../controller/UserController';
 

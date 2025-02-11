@@ -45,6 +45,9 @@ POST http://localhost:5000/api/login
 Content-Type: application/json
 
 {
-  "email": "valdez@gmail.com",
-  "password": "Root@123"
+  "email": "mbungaifrancesco2@gmail.com",
+  "password": "2468Froot"
 }
+
+### GET a user by mail
+GET http://localhost:5000/api/mail/mbungaifrancesco2@gmail.com

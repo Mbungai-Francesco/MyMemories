@@ -52,7 +52,7 @@ export class AppComponent {
 
   checkRoute = () =>{
     let val = this.window.location.pathname.split('/')[1]
-    if(val == 'login' || val == '') this.active = false
+    if(val == 'login' || val == '' || val == 'sign-up') this.active = false
     else this.active = true
   }
 }

@@ -13,7 +13,6 @@ export interface Tag {
 }
 
 export interface TagDto {
-  id: string;
   name: string;
   description?: string;
   color?: string;

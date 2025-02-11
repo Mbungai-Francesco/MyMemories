@@ -17,7 +17,6 @@ export interface Note {
 }
 
 export interface NoteDto {
-  id: string;
   title: string;
   date: Date;
   time: string;

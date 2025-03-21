@@ -1,15 +1,13 @@
-<div [class]="'py-2 px-1 cursor-pointer ' + 'border-0 border-b'">
+<div [class]="'py-2 px-1 cursor-pointer   space-y-2 border-0 border-b' + (note.id == inId ? ' bg-gray-200/70' : '')">
   <p class="text-lg font-medium w-[60%] leading-none">{{note.title}}</p>
-  <div class="text-sm">
-    <div class="flex gap-2 items-center">
-      @for (tag of note.tags; track $index) {
-        <p>{{tag.name}}</p>
-      }
-    </div>
-    <div class="flex gap-1 opacity-70">
-      <p>{{note.date.toDateString().slice(8,10)}}</p>
-      <p>{{note.date.toDateString().slice(4,7)}}</p>
-      <p>{{note.date.toDateString().slice(11,15)}}</p>
-    </div>
+  <div class="flex gap-2 items-center text-xs flex-wrap">
+    @for (tag of note.tags; track $index) {
+      <p class="bg-gray-300 p-1 rounded-sm">{{tag.name}}</p>
+    }
+  </div>
+  <div class="flex gap-1 opacity-70 text-xs">
+    <p>{{note.date.toDateString().slice(8,10)}}</p>
+    <p>{{note.date.toDateString().slice(4,7)}}</p>
+    <p>{{note.date.toDateString().slice(11,15)}}</p>
   </div>
 </div>

@@ -6,7 +6,7 @@
   border-radius: 20px;
 }
 .notes::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom,#fa6544,#f7f7f7);
+  background: linear-gradient(to bottom,#fa6544,#f9411836);
   border-radius: 20px;
   border: 2px solid var(--primary-color)
 }

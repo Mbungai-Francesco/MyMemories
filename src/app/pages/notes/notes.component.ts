@@ -17,6 +17,7 @@ import { NoteComponent } from "../../components/notes/note/note.component";
 export class NotesComponent {
   tags : Tag[] = []
   user !: User
+  selected !: Note
 
   readonly icons = { PlusCircle, Plus }
 
@@ -146,6 +147,12 @@ export class NotesComponent {
           color: '#9e9e9e',
           userId: 'user1',
         },
+        {
+          id: 't16',
+          name: 'Personal Growth',
+          color: '#9e9e9e',
+          userId: 'user1',
+        },
       ],
       userId: 'user1',
     },
@@ -165,5 +172,10 @@ export class NotesComponent {
 
   ngOnInit(){
     this.navbarService.triggerNavAction()
+    this.selected = this.notes[0]
+  }
+
+  preview(note : Note) {
+    this.selected = note
   }
 }

@@ -1,6 +1,6 @@
 <div class="w-full h-full grid grid-cols-5">
   <!-- Notes block -->
-  <div class="py-4 pl-8 pr-4 h-full overflow-scroll notes"> 
+  <div class="py-4 pl-8 pr-4 h-full flex flex-col"> 
     <app-nav-button
       [icon]="icons.Plus"
       [style]="
@@ -10,15 +10,32 @@
       [iconSize]="'15'"
       text="Create Note"
     />
-    <div class="h-full bg-pink-400 overflow-hidden pb-4">
-      <!-- @for (item of notes; track $index) {
-        <app-note [note]="item" />
-      } -->
+    <div class="max-h-[82vh] overflow-scroll  pb-4 notes">
+      @for (item of notes; track $index) {
+        <app-note [note]="item" [inId]="selected.id" (click)="preview(item)"/>
+      }
+      <!-- <div class="h-full bg-purple-500">
+      </div> -->
     </div>
   </div>
   <!-- Notes preview block -->
-  <div class="py-4 px-4 col-span-3 border-0 border-x text-center">
-    <p>preview</p>
+  <div class="py-4 px-4 col-span-3 border-0 border-x ">
+    <div>
+      <p>{{selected.title}}</p>
+      <div>
+        <p></p>
+        <div class="flex items-center text-sm font-light gap-1 ">
+          @for (tag of selected.tags; track $index) {
+            <p class="rounded-sm">
+              {{tag.name}}{{$index != (selected.tags.length -1) ? "," : " "}}
+            </p>
+          }
+        </div>
+      </div>
+      <div></div>
+    </div>
+    <div></div>
+    <div></div>
   </div>
   <!-- Notes option block -->
   <div class="py-4 px-4">

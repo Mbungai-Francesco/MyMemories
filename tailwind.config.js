@@ -12,7 +12,8 @@ module.exports = {
       colors: {
         "myBlack" : {
           100 : "#180202",
-          200 : "#898989"
+          200 : "#898989",
+          300 : "#9ca3af"
         },
         "icon_black" : "#131313",
         "myWhite" : {

@@ -2,8 +2,10 @@
   <div [class]="'min-w-16 h-screen' + (true ? ' ' : ' hidden')">
     <app-navbar/>
   </div>
-  <div class="flex-grow h-full font-rubik box-border">
+  <div class="flex-grow flex flex-col h-full font-rubik box-border">
     <app-header />
-    <router-outlet/>
+    <div class="flex-grow">
+      <router-outlet/>
+    </div>
   </div>
 </div>

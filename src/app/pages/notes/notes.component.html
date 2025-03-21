@@ -1,1 +1,19 @@
-<p>notes works!</p>
+<div class="w-full h-full grid grid-cols-5">
+  <div class="py-4 pl-8 pr-4">
+    <app-nav-button
+      [icon]="icons.Plus"
+      [style]="
+        'flex items-center mb-2 bg-myOrange-100 p-2 cursor-pointer rounded-lg justify-center text-white hover:bg-myOrange-200'
+      "
+      [textStyle]="'text-base text-center'"
+      [iconSize]="'15'"
+      text="Create Note"
+    />
+  </div>
+  <div class="py-4 px-4 col-span-3 border-0 border-x text-center">
+    <p>preview</p>
+  </div>
+  <div class="py-4 px-4">
+    <p>options</p>
+  </div>
+</div>

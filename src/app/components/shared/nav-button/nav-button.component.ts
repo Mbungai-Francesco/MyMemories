@@ -13,6 +13,10 @@ import { WINDOW } from '../../../app.config';
 export class NavButtonComponent {
   @Input() icon : any
   @Input() link !: string
+  @Input() style !: string
+  @Input() iconStyle !: string
+  @Input() iconSize !: string
+  @Input() textStyle !: string
   @Input({required: true}) text !: string
 
   constructor(

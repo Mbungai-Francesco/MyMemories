@@ -1,18 +1,26 @@
 <div class="w-full h-full grid grid-cols-5">
-  <div class="py-4 pl-8 pr-4">
+  <!-- Notes block -->
+  <div class="py-4 pl-8 pr-4 h-full overflow-scroll notes"> 
     <app-nav-button
       [icon]="icons.Plus"
       [style]="
-        'flex items-center mb-2 bg-myOrange-100 p-2 cursor-pointer rounded-lg justify-center text-white hover:bg-myOrange-200'
+        'flex items-center mb-2 bg-myOrange-100 py-2 cursor-pointer rounded-lg justify-center text-white hover:bg-myOrange-200 gap-1'
       "
-      [textStyle]="'text-base text-center'"
+      [textStyle]="'text-sm text-center'"
       [iconSize]="'15'"
       text="Create Note"
     />
+    <div class="h-full bg-pink-400 overflow-hidden pb-4">
+      <!-- @for (item of notes; track $index) {
+        <app-note [note]="item" />
+      } -->
+    </div>
   </div>
+  <!-- Notes preview block -->
   <div class="py-4 px-4 col-span-3 border-0 border-x text-center">
     <p>preview</p>
   </div>
+  <!-- Notes option block -->
   <div class="py-4 px-4">
     <p>options</p>
   </div>

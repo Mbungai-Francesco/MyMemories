@@ -9,7 +9,7 @@ export interface Note {
   time: string;
   content: string;
   tags: Tag[];
-  tagIds: string[];
+  tagIds ?: string[]; // ? added for static data
   category?: Category;
   categoryId?: string;
   user?: User;

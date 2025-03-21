@@ -1,0 +1,15 @@
+<div [class]="'py-2 px-1 cursor-pointer ' + 'border-0 border-b'">
+  <p class="text-lg font-medium w-[60%] leading-none">{{note.title}}</p>
+  <div class="text-sm">
+    <div class="flex gap-2 items-center">
+      @for (tag of note.tags; track $index) {
+        <p>{{tag.name}}</p>
+      }
+    </div>
+    <div class="flex gap-1 opacity-70">
+      <p>{{note.date.toDateString().slice(8,10)}}</p>
+      <p>{{note.date.toDateString().slice(4,7)}}</p>
+      <p>{{note.date.toDateString().slice(11,15)}}</p>
+    </div>
+  </div>
+</div>

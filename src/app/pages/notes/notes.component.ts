@@ -7,11 +7,12 @@ import { NavButtonComponent } from '../../components/shared/nav-button/nav-butto
 import { Clock, LucideAngularModule, Plus, PlusCircle, Tag as tag } from 'lucide-angular';
 import { NoteComponent } from "../../components/notes/note/note.component";
 import { FormsModule } from '@angular/forms';
+import { LoaderComponent } from '../../components/shared/loader/loader.component';
 
 @Component({
   selector: 'app-notes',
   standalone: true,
-  imports: [NavButtonComponent, NoteComponent, LucideAngularModule, FormsModule],
+  imports: [NavButtonComponent, NoteComponent, LucideAngularModule, FormsModule, LoaderComponent],
   templateUrl: './notes.component.html',
   styleUrl: './notes.component.css'
 })
@@ -20,6 +21,9 @@ export class NotesComponent {
   user !: User
   selected !: Note
   tempContent = ''
+  tempTitle = ''
+  isLoading = false;
+  fullscreen = false
 
   readonly icons = { PlusCircle, Plus, tag, Clock }
 
@@ -176,15 +180,37 @@ export class NotesComponent {
     this.navbarService.triggerNavAction()
     this.selected = this.notes[0]
     this.tempContent = this.notes[0].content
+    this.tempTitle = this.notes[0].title
   }
 
   preview(note : Note) {
     this.selected = note
-    this.tempContent = note.content    
+    this.tempContent = note.content 
+    this.tempTitle = note.title   
   }
-
+  
   undo(){
+    this.tempTitle = this.selected.title   
     this.tempContent = this.selected.content  
+  }
+  
+  // ...existing methods
+  
+  // Example of how to use the loader:
+  update() {
+    this.isLoading = true;
+    this.fullscreen = true;
+    
+    // Simulate an API call
+    setTimeout(() => {
+      // Update the note
+      // this.selected.title = this.tempTitle;
+      // this.selected.content = this.tempContent;
+      
+      // End loading state
+      this.fullscreen = false;
+      this.isLoading = false;
+    }, 2000);
   }
 
 }

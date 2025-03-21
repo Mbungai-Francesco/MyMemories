@@ -1,0 +1,22 @@
+.bounce1 {
+  animation: bounce-delay 1.4s infinite ease-in-out both;
+  animation-delay: -0.32s;
+}
+
+.bounce2 {
+  animation: bounce-delay 1.4s infinite ease-in-out both;
+  animation-delay: -0.16s;
+}
+
+.bounce3 {
+  animation: bounce-delay 1.4s infinite ease-in-out both;
+}
+
+@keyframes bounce-delay {
+  0%, 80%, 100% { 
+    transform: scale(0);
+  } 
+  40% { 
+    transform: scale(1.0);
+  }
+}

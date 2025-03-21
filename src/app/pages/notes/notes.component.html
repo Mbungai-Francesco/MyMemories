@@ -54,7 +54,9 @@
         </div>
       </div>
     </div>
-    <div class="border-0 border-y flex-grow"></div>
+    <div class="border-0 border-y flex-grow">
+      <textarea class="w-full h-full outline-none py-2 font-light textArea" name="" id="" [(ngModel)]="tempContent"></textarea>
+    </div>
     <div class="flex items-center gap-4 py-2">
       <app-nav-button
         [style]="
@@ -62,13 +64,16 @@
         "
         [textStyle]="'text-sm text-center'"
         text="Save Note"
+        [hidden]="tempContent == selected.content"
       />
       <app-nav-button
         [style]="
-          'mb-2 bg-gray-200/50 py-2 px-4 cursor-pointer rounded-lg justify-center text-black hover:bg-myOrange-200'
+          'mb-2 bg-gray-200/50 py-2 px-4 cursor-pointer rounded-lg justify-center text-black hover:bg-gray-300'
         "
         [textStyle]="'text-sm text-center'"
         text="Cancel"
+        [hidden]="tempContent == selected.content"
+        (click)="undo()"
       />
     </div>
   </div>
@@ -76,5 +81,6 @@
   <!-- Notes option block -->
   <div class="py-4 px-4">
     <p>options</p>
+    <!-- <p>{{tempContent}}</p> -->
   </div>
 </div>

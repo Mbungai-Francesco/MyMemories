@@ -6,11 +6,12 @@ import { UserService } from '../../services/user/user.service';
 import { NavButtonComponent } from '../../components/shared/nav-button/nav-button.component';
 import { Clock, LucideAngularModule, Plus, PlusCircle, Tag as tag } from 'lucide-angular';
 import { NoteComponent } from "../../components/notes/note/note.component";
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-notes',
   standalone: true,
-  imports: [NavButtonComponent, NoteComponent, LucideAngularModule],
+  imports: [NavButtonComponent, NoteComponent, LucideAngularModule, FormsModule],
   templateUrl: './notes.component.html',
   styleUrl: './notes.component.css'
 })
@@ -18,6 +19,7 @@ export class NotesComponent {
   tags : Tag[] = []
   user !: User
   selected !: Note
+  tempContent = ''
 
   readonly icons = { PlusCircle, Plus, tag, Clock }
 
@@ -173,9 +175,16 @@ export class NotesComponent {
   ngOnInit(){
     this.navbarService.triggerNavAction()
     this.selected = this.notes[0]
+    this.tempContent = this.notes[0].content
   }
 
   preview(note : Note) {
     this.selected = note
+    this.tempContent = note.content    
   }
+
+  undo(){
+    this.tempContent = this.selected.content  
+  }
+
 }

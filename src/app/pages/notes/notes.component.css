@@ -18,3 +18,7 @@
 .notes:active::-webkit-scrollbar {
   display: block;
 }
+
+.textArea{
+  resize: none;
+}

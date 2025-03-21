@@ -1,6 +1,6 @@
 <div class="w-full h-full grid grid-cols-5">
   <!-- Notes block -->
-  <div class="py-4 pl-8 pr-4 h-full flex flex-col"> 
+  <div class="py-4 pl-8 pr-4 h-full flex flex-col">
     <app-nav-button
       [icon]="icons.Plus"
       [style]="
@@ -10,33 +10,69 @@
       [iconSize]="'15'"
       text="Create Note"
     />
-    <div class="max-h-[82vh] overflow-scroll  pb-4 notes">
+    <div class="max-h-[82vh] overflow-y-scroll notes custom-scrollbar pt-2">
       @for (item of notes; track $index) {
-        <app-note [note]="item" [inId]="selected.id" (click)="preview(item)"/>
+      <app-note [note]="item" [inId]="selected.id" (click)="preview(item)" />
       }
-      <!-- <div class="h-full bg-purple-500">
-      </div> -->
     </div>
   </div>
+
   <!-- Notes preview block -->
-  <div class="py-4 px-4 col-span-3 border-0 border-x ">
-    <div>
-      <p>{{selected.title}}</p>
-      <div>
-        <p></p>
-        <div class="flex items-center text-sm font-light gap-1 ">
+  <div class="px-4 col-span-3 border-0 border-x flex flex-col">
+    <div class="pb-4">
+      <p class="text-2xl font-semibold leading-none py-6">
+        {{ selected.title }}
+      </p>
+      <!-- tags -->
+      <div class="font-light flex items-center w-full mb-2">
+        <lucide-icon
+          [name]="icons.tag"
+          class="text-myBlack-200"
+          size="15"
+        ></lucide-icon>
+        <p class="w-24 ml-1 text-sm">Tags</p>
+        <div class="flex items-center text-sm gap-1">
           @for (tag of selected.tags; track $index) {
-            <p class="rounded-sm">
-              {{tag.name}}{{$index != (selected.tags.length -1) ? "," : " "}}
-            </p>
+          <p class="rounded-sm">
+            {{ tag.name }}{{ $index != selected.tags.length - 1 ? "," : " " }}
+          </p>
           }
         </div>
       </div>
-      <div></div>
+      <!-- last edited -->
+      <div class="font-light flex items-center w-full">
+        <lucide-icon
+          [name]="icons.Clock"
+          class="text-myBlack-200"
+          size="15"
+        ></lucide-icon>
+        <p class="w-24 ml-1 text-sm">Last edited</p>
+        <div class="flex gap-1 text-xs">
+          <p>{{ selected.date.toDateString().slice(8, 10) }}</p>
+          <p>{{ selected.date.toDateString().slice(4, 7) }}</p>
+          <p>{{ selected.date.toDateString().slice(11, 15) }}</p>
+        </div>
+      </div>
     </div>
-    <div></div>
-    <div></div>
+    <div class="border-0 border-y flex-grow"></div>
+    <div class="flex items-center gap-4 py-2">
+      <app-nav-button
+        [style]="
+          'mb-2 bg-myOrange-100 py-2 px-4 cursor-pointer rounded-lg justify-center text-white hover:bg-myOrange-200'
+        "
+        [textStyle]="'text-sm text-center'"
+        text="Save Note"
+      />
+      <app-nav-button
+        [style]="
+          'mb-2 bg-gray-200/50 py-2 px-4 cursor-pointer rounded-lg justify-center text-black hover:bg-myOrange-200'
+        "
+        [textStyle]="'text-sm text-center'"
+        text="Cancel"
+      />
+    </div>
   </div>
+
   <!-- Notes option block -->
   <div class="py-4 px-4">
     <p>options</p>

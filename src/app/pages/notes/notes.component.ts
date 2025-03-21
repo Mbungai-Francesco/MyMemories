@@ -4,13 +4,13 @@ import { Note, Tag, User } from '../../types';
 import { getTags } from '../../api/tagsApi';
 import { UserService } from '../../services/user/user.service';
 import { NavButtonComponent } from '../../components/shared/nav-button/nav-button.component';
-import { Plus, PlusCircle } from 'lucide-angular';
+import { Clock, LucideAngularModule, Plus, PlusCircle, Tag as tag } from 'lucide-angular';
 import { NoteComponent } from "../../components/notes/note/note.component";
 
 @Component({
   selector: 'app-notes',
   standalone: true,
-  imports: [NavButtonComponent, NoteComponent],
+  imports: [NavButtonComponent, NoteComponent, LucideAngularModule],
   templateUrl: './notes.component.html',
   styleUrl: './notes.component.css'
 })
@@ -19,7 +19,7 @@ export class NotesComponent {
   user !: User
   selected !: Note
 
-  readonly icons = { PlusCircle, Plus }
+  readonly icons = { PlusCircle, Plus, tag, Clock }
 
   // Sample notes data
   notes: Note[] = [

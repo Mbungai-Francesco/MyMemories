@@ -1,12 +1,20 @@
 .notes::-webkit-scrollbar {
   width: 0.45em;
+  display: none;
 }
 .notes::-webkit-scrollbar-track {
-  background: var(--white);
   border-radius: 20px;
 }
 .notes::-webkit-scrollbar-thumb {
   background: linear-gradient(to bottom,#fa6544,#f9411836);
   border-radius: 20px;
-  border: 2px solid var(--primary-color)
+  border: 2px solid var(--primary-color);
+}
+
+/* Show scrollbar only when hovering/scrolling */
+.notes:hover::-webkit-scrollbar,
+.notes::-webkit-scrollbar:hover,
+.notes:focus::-webkit-scrollbar,
+.notes:active::-webkit-scrollbar {
+  display: block;
 }

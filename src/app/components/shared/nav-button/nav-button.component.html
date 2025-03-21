@@ -3,9 +3,13 @@
     <lucide-icon [name]="icon" color="black" size="20"></lucide-icon>
     <p class="ml-4 text-lg font-normal">{{text}}</p>
   </div>
-}@else{
+}@else if(icon){
   <div [class]="style">
     <lucide-icon [name]="icon" [class]="iconStyle" [size]="iconSize"></lucide-icon>
+    <p [class]="textStyle">{{text}}</p>
+  </div>
+}@else {
+  <div [class]="style">
     <p [class]="textStyle">{{text}}</p>
   </div>
 }

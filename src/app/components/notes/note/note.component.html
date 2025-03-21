@@ -1,4 +1,4 @@
-<div [class]="'py-2 px-1 cursor-pointer   space-y-2 border-0 border-b' + (note.id == inId ? ' bg-gray-200/70' : '')">
+<div [class]="'py-2 px-2 cursor-pointer space-y-2 border-0 border-b w-full' + (note.id == inId ? ' bg-gray-200/70 rounded-md' : '')">
   <p class="text-lg font-medium w-[60%] leading-none">{{note.title}}</p>
   <div class="flex gap-2 items-center text-xs flex-wrap">
     @for (tag of note.tags; track $index) {

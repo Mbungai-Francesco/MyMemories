@@ -1,7 +1,12 @@
 <!-- loader -->
-<app-loader [isLoading]="isLoading" message="Saving note..." [fullscreen]="fullscreen"></app-loader>
+<app-loader
+  [isLoading]="isLoading"
+  message="Saving note..."
+  [fullscreen]="fullscreen"
+></app-loader>
 <div class="w-full h-full grid grid-cols-5">
-  <!-- Notes block -->
+
+  <!-- ? Notes block -->
   <div class="py-4 pl-8 pr-4 h-full flex flex-col">
     <app-nav-button
       [icon]="icons.Plus"
@@ -19,10 +24,15 @@
     </div>
   </div>
 
-  <!-- Notes preview block -->
+  <!-- ? Notes preview block -->
   <div class="px-4 col-span-3 border-0 border-x flex flex-col">
+    <!-- ? head of preview -->
     <div class="pb-4">
-      <input class="text-2xl font-semibold leading-none py-6 outline-none" [(ngModel)]="tempTitle" [readonly]="false">
+      <input
+        class="text-2xl font-semibold leading-none py-6 outline-none"
+        [(ngModel)]="tempTitle"
+        [readonly]="false"
+      />
       <!-- tags -->
       <div class="font-light flex items-center w-full mb-2">
         <lucide-icon
@@ -54,34 +64,65 @@
         </div>
       </div>
     </div>
+    <!-- ? content of note -->
     <div class="border-0 border-y flex-grow">
-      <textarea class="w-full h-full outline-none py-2 font-light textArea" name="" id="" [(ngModel)]="tempContent" [readonly]="false"></textarea>
+      <textarea
+        class="w-full h-full outline-none py-2 font-light textArea"
+        name=""
+        id=""
+        [(ngModel)]="tempContent"
+        [readonly]="false"
+      ></textarea>
     </div>
+    <!-- ? Save and Cancel button -->
     <div class="flex items-center gap-4 py-2">
+      <!--? Save button -->
       <app-nav-button
         [style]="
           'mb-2 bg-myOrange-100 py-2 px-4 cursor-pointer rounded-lg justify-center text-white hover:bg-myOrange-200'
         "
         [textStyle]="'text-sm text-center'"
         text="Save Note"
-        [hidden]="(tempContent == selected.content) && (tempTitle == selected.title)"
+        [hidden]="
+          tempContent == selected.content && tempTitle == selected.title
+        "
         (click)="update()"
       />
+      <!--? Cancel button -->
       <app-nav-button
         [style]="
           'mb-2 bg-gray-200/50 py-2 px-4 cursor-pointer rounded-lg justify-center text-black hover:bg-gray-300'
         "
         [textStyle]="'text-sm text-center'"
         text="Cancel"
-        [hidden]="(tempContent == selected.content) && (tempTitle == selected.title)"
+        [hidden]="
+          tempContent == selected.content && tempTitle == selected.title
+        "
         (click)="undo()"
       />
     </div>
   </div>
 
-  <!-- Notes option block -->
+  <!-- ? Notes option block -->
   <div class="py-4 px-4">
-    <p>options</p>
-    <!-- <p>{{tempContent}}</p> -->
+    <!-- ? Archieve -->
+    <app-nav-button
+      [icon]="icons.Archive"
+      [style]="
+        'flex items-center mb-2 py-2 px-4 cursor-pointer rounded-lg text-black border border-black/30 hover:bg-myOrange-200 hover:border-transparent gap-1'
+      "
+      [textStyle]="'text-sm '"
+      [iconSize]="'15'"
+      text="Archive Note"
+    />
+    <app-nav-button
+      [icon]="icons.Trash2"
+      [style]="
+        'flex items-center mb-2 py-2 px-4 cursor-pointer rounded-lg text-black border border-black/30 hover:bg-myOrange-200 hover:border-transparent gap-1'
+      "
+      [textStyle]="'text-sm '"
+      [iconSize]="'15'"
+      text="Delete Note"
+    />
   </div>
 </div>

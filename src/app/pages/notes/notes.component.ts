@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { NavbarServiceService } from '../../services/navbar/navbar-service.service';
 import { Note, Tag, User } from '../../types';
-import { getTags } from '../../api/tagsApi';
 import { UserService } from '../../services/user/user.service';
 import { NavButtonComponent } from '../../components/shared/nav-button/nav-button.component';
-import { Clock, LucideAngularModule, Plus, PlusCircle, Tag as tag } from 'lucide-angular';
+import { Archive, Clock, LucideAngularModule, Plus, PlusCircle, Tag as tag, Trash2 } from 'lucide-angular';
 import { NoteComponent } from "../../components/notes/note/note.component";
 import { FormsModule } from '@angular/forms';
 import { LoaderComponent } from '../../components/shared/loader/loader.component';
@@ -25,7 +24,7 @@ export class NotesComponent {
   isLoading = false;
   fullscreen = false
 
-  readonly icons = { PlusCircle, Plus, tag, Clock }
+  readonly icons = { PlusCircle, Plus, tag, Clock, Archive, Trash2 }
 
   // Sample notes data
   notes: Note[] = [

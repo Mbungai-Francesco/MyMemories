@@ -1,9 +1,9 @@
 <div class="h-screen font-rubik flex w-full relative overflow-hidden">
-  <div [class]="'w-fit h-screen' + (true ? ' ' : ' hidden')">
+  <div [class]="'w-fit h-screen' + (active ? ' ' : ' hidden')">
     <app-navbar/>
   </div>
   <div class="flex-grow flex flex-col h-full font-rubik box-border">
-    <app-header />
+    <app-header [class]="'' + (active ? ' ' : ' hidden')"/>
     <div class="flex-grow">
       <router-outlet/>
     </div>

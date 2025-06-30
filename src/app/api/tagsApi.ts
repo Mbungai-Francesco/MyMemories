@@ -14,8 +14,7 @@ export const createTag = async (tag : TagDto, jwt : string) => {
     return res.data.data as Tag
   }
   catch(error){
-    console.error('Error:', error);
-    return null
+    throw new Error('Create tag failed: ' + (error as Error).message);
   }
 }
 
@@ -26,8 +25,7 @@ export const getTags = async (jwt : string) => {
     return res.data.data as Tag[]
   }
   catch(error){
-    console.error('Error:', error);
-    return null
+    throw new Error('Fetching tags failed: ' + (error as Error).message);
   }
 }
 
@@ -38,8 +36,7 @@ export const getUserTags = async (userId: string, jwt : string) => {
     return res.data.data as Tag[]
   }
   catch(error){
-    console.error('Error:', error);
-    return null
+    throw new Error('Fetching user tags failed: ' + (error as Error).message);
   }
 }
 
@@ -50,8 +47,7 @@ export const getTag = async (id : string,jwt : string) => {
     return res.data.data as Tag
   }
   catch(error){
-    console.error('Error:', error);
-    return null
+    throw new Error('Get tag failed: ' + (error as Error).message);
   }
 }
 
@@ -65,8 +61,7 @@ export const updateTag = async (tag : Tag,jwt : string) => {
     return res.data.data as Tag
   }
   catch(error){
-    console.error('Error:', error);
-    return null
+    throw new Error('Update tag failed: ' + (error as Error).message);
   }
 }
 
@@ -77,7 +72,6 @@ export const deleteTag = async (id : string,jwt : string) => {
     return res.data.data as Tag
   }
   catch(error){
-    console.error('Error:', error);
-    return null
+    throw new Error('Delete tag failed: ' + (error as Error).message);
   }
 }

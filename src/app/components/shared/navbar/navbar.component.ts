@@ -7,12 +7,13 @@ import { UserService } from '../../../services/user/user.service';
 import { getUserTags } from '../../../api/tagsApi';
 import { JwtService } from '../../../services/jwt/jwt.service';
 import { getUser } from '../../../api/userApi';
+import { RouterLink } from '@angular/router';
 
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [LucideAngularModule, NavButtonComponent, TagComponent],
+  imports: [LucideAngularModule, NavButtonComponent, TagComponent, RouterLink],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })

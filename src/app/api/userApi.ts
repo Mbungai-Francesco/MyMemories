@@ -15,8 +15,7 @@ export const createUser = async (user : UserDto) => {
     return use
   }
   catch(error){
-    console.error('Error:', error);
-    return null
+    throw new Error('Login faileds: ' + (error as Error).message);
   }
 }
 
@@ -27,8 +26,7 @@ export const getUsers = async (jwt : string) => {
     return res.data.data as User[]
   }
   catch(error){
-    console.error('Error:', error);
-    return null
+    throw new Error('Get users failed: ' + (error as Error).message);
   }
 }
 
@@ -39,8 +37,7 @@ export const getUser = async (id : string, jwt : string) => {
     return res.data.data as User
   }
   catch(error){
-    console.error('Error:', error);
-    return null
+    throw new Error('Get user failed: ' + (error as Error).message);
   }
 }
 
@@ -51,8 +48,7 @@ export const getUserByMail = async (mail : string) => {
     return res.data.data as User
   }
   catch(error){
-    console.error('Error:', error);
-    return null
+    throw new Error('Get user by mail failed: ' + (error as Error).message);
   }
 }
 
@@ -64,8 +60,7 @@ export const updateUser = async (user : User, jwt : string) => {
     return res.data.data as User
   }
   catch(error){
-    console.error('Error:', error);
-    return null
+    throw new Error('Update user failed: ' + (error as Error).message);
   }
 }
 
@@ -76,21 +71,21 @@ export const deleteUser = async (id : string, jwt : string) => {
     return res.data.data as User
   }
   catch(error){
-    console.error('Error:', error);
-    return null
+    throw new Error('Delete user failed: ' + (error as Error).message);
   }
 }
 
 export const loginUser = async (email : string, password : string) => {
   try{
     const res = await axios.post(`${link}/api/login`, {email, password})
+    // console.log(res);
+    
     const user = res.data.data as User
     user.jwt = res.data.token
     console.log(res.data);
     return user
   }
   catch(error){
-    console.error('Error:', error);
-    return null
+    throw new Error('Login faileds: ' + (error as Error).message);
   }
 }

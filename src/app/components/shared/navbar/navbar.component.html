@@ -3,7 +3,12 @@
     <div class="flex mb-4 justify-between items-center">
       <p class="font-semibold text-2xl cursor-pointer mr-2">myMEMORY</p>
       <div class="bg-black w-fit rounded-md flex items-center p-[3px]">
-        <lucide-icon [name]="icons.X" color="white" size="20"></lucide-icon>
+        <lucide-icon 
+          [name]="icons.X" 
+          color="white"
+          size="20"
+          routerLink="/login"
+        ></lucide-icon>
       </div>
     </div>
     <div class="py-2 border-0 border-b ">
@@ -24,7 +29,9 @@
     </div>
   </div>
   <div class='flex justify-between items-center mb-2 hover:bg-myWhite-200 p-2 cursor-pointer rounded-lg bg-myWhite-200'>
-    <p class="text-lg font-normal">{{user.firstname || ' '}}</p>
+    @if(user){
+      <p class="text-lg font-normal">{{user.firstname || ' '}}</p>
+    }
     <lucide-icon [name]="icons.ChevronsUpDown" color="black" size="20"></lucide-icon>
   </div>
 </div>

@@ -83,23 +83,3 @@ export class LoginComponent {
     .catch(error => console.error(error));
   }
 }
-
-// // Custom password validator: At least 6 characters, with a number & uppercase letter
-// export function strongPasswordValidator(): ValidatorFn {
-//   return (control: AbstractControl): ValidationErrors | null => {
-//     const value = control.value;
-//     if (!value) {
-//       return null;  // If no input, don't show error
-//     }
-
-//     const hasUpperCase = /[A-Z]/.test(value);
-//     const hasNumber = /\d/.test(value);
-//     const minLength = value.length >= 6;
-
-//     if (!hasUpperCase || !hasNumber || !minLength) {
-//       return { weakPassword: true }; // Return an error object
-//     }
-
-//     return null; // Valid password
-//   };
-// }

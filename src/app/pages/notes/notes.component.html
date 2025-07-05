@@ -59,9 +59,11 @@
         ></lucide-icon>
         <p class="w-24 ml-1 text-sm">Last edited</p>
         <div class="flex gap-1 text-xs">
-          <p>{{ selected.date.toDateString().slice(8, 10) }}</p>
+          
+          <p>{{ this.dateUtils.formatDate(selected.date) }}</p>
+          <!-- <p>{{ selected.date.toDateString().slice(8, 10) }}</p>
           <p>{{ selected.date.toDateString().slice(4, 7) }}</p>
-          <p>{{ selected.date.toDateString().slice(11, 15) }}</p>
+          <p>{{ selected.date.toDateString().slice(11, 15) }}</p> -->
         </div>
       </div>
     </div>

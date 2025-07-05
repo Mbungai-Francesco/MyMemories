@@ -13,13 +13,7 @@ import {
   Trash2,
 } from 'lucide-angular';
 import { NoteComponent } from '../../components/notes/note/note.component';
-import {
-  FormBuilder,
-  FormGroup,
-  FormsModule,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { LoaderComponent } from '../../components/shared/loader/loader.component';
 import { getNotes, updateNote } from '../../api/notesApi';
 import { JwtService } from '../../services/jwt/jwt.service';
@@ -27,6 +21,7 @@ import { DialogModule, Dialog } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { CreateNoteComponent } from '../../components/popups/create-note/create-note.component';
+import { DateUtilsService } from '../../services/utils/date-utils.service';
 
 @Component({
   selector: 'app-notes',
@@ -38,7 +33,6 @@ import { CreateNoteComponent } from '../../components/popups/create-note/create-
     FormsModule,
     LoaderComponent,
     CreateNoteComponent,
-    ReactiveFormsModule,
   ],
   templateUrl: './notes.component.html',
   styleUrl: './notes.component.css',
@@ -58,14 +52,12 @@ export class NotesComponent {
   // Sample notes data
   notes: Note[] = [];
 
-  loginForm!: FormGroup;
-  invalidCredentials = false;
 
   constructor(
     private navbarService: NavbarServiceService,
     private userService: UserService,
     private jwtService: JwtService,
-    private fb: FormBuilder
+    public dateUtils: DateUtilsService
   ) {
     navbarService.triggerNavAction();
 
@@ -81,10 +73,6 @@ export class NotesComponent {
 
   ngOnInit() {
     this.navbarService.triggerNavAction();
-    this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.min(3)]],
-      password: [, Validators.required],
-    });
   }
 
   visible: boolean = false;

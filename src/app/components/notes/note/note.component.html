@@ -6,8 +6,9 @@
     }
   </div>
   <div class="flex gap-1 opacity-70 text-xs">
-    <p>{{note.date.toDateString().slice(8,10)}}</p>
+    <p>{{this.dateUtils.formatDate(note.date)}}</p>
+    <!-- <p>{{note.date.toDateString().slice(8,10)}}</p>
     <p>{{note.date.toDateString().slice(4,7)}}</p>
-    <p>{{note.date.toDateString().slice(11,15)}}</p>
+    <p>{{note.date.toDateString().slice(11,15)}}</p> -->
   </div>
 </div>

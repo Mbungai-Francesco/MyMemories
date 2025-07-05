@@ -1,5 +1,6 @@
 import { Component, Input, input } from '@angular/core';
 import { Note } from '../../../types';
+import { DateUtilsService } from '../../../services/utils/date-utils.service';
 
 @Component({
   selector: 'app-note',
@@ -11,4 +12,7 @@ import { Note } from '../../../types';
 export class NoteComponent {
   @Input() note !: Note
   @Input() inId !: string
+
+  constructor(public dateUtils: DateUtilsService){}
+
 }

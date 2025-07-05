@@ -22,6 +22,7 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { CreateNoteComponent } from '../../components/popups/create-note/create-note.component';
 import { DateUtilsService } from '../../services/utils/date-utils.service';
+import { getUserTags } from '../../api/tagsApi';
 
 @Component({
   selector: 'app-notes',
@@ -52,7 +53,6 @@ export class NotesComponent {
   // Sample notes data
   notes: Note[] = [];
 
-
   constructor(
     private navbarService: NavbarServiceService,
     private userService: UserService,
@@ -63,11 +63,11 @@ export class NotesComponent {
 
     userService.user$.subscribe((use) => {
       this.user = use;
-      this.tags = use.tags;
     });
     jwtService.jwt$.subscribe((jwt) => {
       this.jwt = jwt;
       this.fetchNotes(jwt);
+      this.fetchTags(jwt);
     });
   }
 
@@ -78,7 +78,7 @@ export class NotesComponent {
   visible: boolean = false;
 
   showDialog() {
-    this.visible = true;
+    this.visible = !this.visible;
   }
 
   preview(note: Note) {
@@ -99,6 +99,10 @@ export class NotesComponent {
       this.tempContent = res[0].content;
       this.tempTitle = res[0].title;
     });
+  }
+
+  fetchTags(token: string) {
+    getUserTags(this.jwtService.getId(), token).then((res) => this.tags = res);
   }
 
   // ...existing methods

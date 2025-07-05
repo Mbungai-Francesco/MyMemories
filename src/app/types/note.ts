@@ -19,8 +19,8 @@ export interface Note {
 export interface NoteDto {
   title: string;
   date: Date;
-  time: string;
-  tagIds: string[];
-  categoryId: string;
+  time ?: string;
+  tagIds : string[];
+  categoryId ?: string;
   userId: string;
 }

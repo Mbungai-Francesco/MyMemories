@@ -7,50 +7,50 @@
     <h2 class="text-2xl font-bold text-gray-800 mb-2">New Note</h2>
     <p class="text-gray-600 mb-2">Create a new note.</p>
 
-    <form class="space-y-2" [formGroup]="createForm">
+    <div class="space-y-2">
       <div>
-        <label
-          for="username"
-          class="form-label"
-          >Username</label
-        >
+        <label for="username" class="form-label">Username</label>
         <input
           type="text"
           id="username"
-          formControlName="title"
+          [(ngModel)]="title"
           class="form-input"
           placeholder="Enter your username"
         />
       </div>
 
-      <div>
+      <div class="flex items-center gap-2">
         <p class="form-label">Tags :</p>
+        <div class="flex items-center gap-1">
+          @for(item of selectedTags; track $index){
+          <app-tag
+            color="{{ getTag(item)?.color }}"
+            (click)="removeTag(item)"
+          />
+          }
+        </div>
       </div>
 
       <div>
-        <select name="tags" id="tags" class="form-input" formControlName="tags">
+        <select
+          name="tags"
+          id="tags"
+          class="form-input"
+          (change)="addTag($event)"
+        >
           <option value="">Select tags</option>
-          <option value="work">Work</option>
-          <option value="personal">Personal</option>
-          <option value="important">Important</option>
+          @for(item of tags; track $index){ @if(!selectedTags.has(item.id)){
+          <option [value]="item.id">{{ item.name }}</option>
+          } }
         </select>
       </div>
 
       <div class="flex justify-end space-x-3 pt-4">
-        <button
-          type="button"
-          class="form-cancel"
-        >
-          Cancel
-        </button>
-        <button
-          type="button"
-          class="form-save"
-          (click)="create()"
-        >
+        <button type="button" class="form-cancel" (click)="close()">Cancel</button>
+        <button type="button" class="form-save" (click)="create()">
           Create
         </button>
       </div>
-    </form>
+    </div>
   </div>
 </div>

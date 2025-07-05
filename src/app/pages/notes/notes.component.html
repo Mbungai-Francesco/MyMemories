@@ -4,7 +4,7 @@
   message="Saving note..."
   [fullscreen]="fullscreen"
 ></app-loader>
-<app-create-note/>
+<app-create-note [tags]="tags" (closeNote)="showDialog()" [hidden]="visible" (refetchNotes)="fetchNotes($event)"/>
 <div class="w-full h-full grid grid-cols-5">
   <!-- ? Notes block -->
   <div class="py-4 pl-8 pr-4 h-full flex flex-col">
@@ -16,6 +16,7 @@
       [textStyle]="'text-sm text-center'"
       [iconSize]="'15'"
       text="Create Note"
+      (click)="showDialog()"
     />
     <div class="max-h-[82vh] overflow-y-scroll notes custom-scrollbar pt-2">
       @if(selected){ @for (item of notes; track $index) {
@@ -59,7 +60,6 @@
         ></lucide-icon>
         <p class="w-24 ml-1 text-sm">Last edited</p>
         <div class="flex gap-1 text-xs">
-          
           <p>{{ this.dateUtils.formatDate(selected.date) }}</p>
           <!-- <p>{{ selected.date.toDateString().slice(8, 10) }}</p>
           <p>{{ selected.date.toDateString().slice(4, 7) }}</p>

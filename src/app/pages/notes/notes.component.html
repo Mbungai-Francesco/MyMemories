@@ -4,8 +4,8 @@
   message="Saving note..."
   [fullscreen]="fullscreen"
 ></app-loader>
+<app-create-note/>
 <div class="w-full h-full grid grid-cols-5">
-
   <!-- ? Notes block -->
   <div class="py-4 pl-8 pr-4 h-full flex flex-col">
     <app-nav-button
@@ -18,14 +18,15 @@
       text="Create Note"
     />
     <div class="max-h-[82vh] overflow-y-scroll notes custom-scrollbar pt-2">
-      @for (item of notes; track $index) {
+      @if(selected){ @for (item of notes; track $index) {
       <app-note [note]="item" [inId]="selected.id" (click)="preview(item)" />
-      }
+      } }
     </div>
   </div>
 
   <!-- ? Notes preview block -->
   <div class="px-4 col-span-3 border-0 border-x flex flex-col">
+    @if(selected){
     <!-- ? head of preview -->
     <div class="pb-4">
       <input
@@ -101,6 +102,7 @@
         (click)="undo()"
       />
     </div>
+    }
   </div>
 
   <!-- ? Notes option block -->

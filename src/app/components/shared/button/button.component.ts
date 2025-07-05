@@ -10,5 +10,6 @@ import { RouterLink } from '@angular/router';
 })
 export class ButtonComponent {
   @Input() link !: string
+  @Input() classes ?: string = ''
   @Input({required: true}) text !: string
 }

@@ -14,8 +14,7 @@ export const createCategory = async (cat : CategoryDto, jwt : string) => {
     return res.data.data as Category
   }
   catch(error){
-    console.error('Error:', error);
-    return null
+    throw new Error('Create category failed: ' + (error as Error).message);
   }
 }
 
@@ -26,8 +25,7 @@ export const getCategories = async (jwt : string) => {
     return res.data.data as Category[]
   }
   catch(error){
-    console.error('Error:', error);
-    return null
+    throw new Error('Get categories failed: ' + (error as Error).message);
   }
 }
 
@@ -38,8 +36,7 @@ export const getCategory = async (id : string,jwt : string) => {
     return res.data.data as Category
   }
   catch(error){
-    console.error('Error:', error);
-    return null
+    throw new Error('Get category failed: ' + (error as Error).message);
   }
 }
 
@@ -53,8 +50,7 @@ export const updateCategory = async (cat : Category,jwt : string) => {
     return res.data.data as Category
   }
   catch(error){
-    console.error('Error:', error);
-    return null
+    throw new Error('Update category failed: ' + (error as Error).message);
   }
 }
 
@@ -65,7 +61,6 @@ export const deleteCategory = async (id : string,jwt : string) => {
     return res.data.data as Category
   }
   catch(error){
-    console.error('Error:', error);
-    return null
+    throw new Error('Delete category failed: ' + (error as Error).message);
   }
 }

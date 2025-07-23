@@ -10,5 +10,5 @@ import { Component, Input } from '@angular/core';
 export class LoaderComponent {
   @Input() isLoading : boolean = false
   @Input() message : string = ''
-  @Input() fullscreen : boolean  = false
+  @Input() state : string  = ''
 }

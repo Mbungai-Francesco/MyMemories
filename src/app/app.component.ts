@@ -8,12 +8,12 @@ import { jwtDecode } from 'jwt-decode';
 import { getUser } from './api/userApi';
 import { WINDOW } from './app.config';
 import { NavbarServiceService } from './services/navbar/navbar-service.service';
-import { HeaderComponent } from "./components/shared/header/header.component";
+// import { HeaderComponent } from "./components/shared/header/header.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavbarComponent, HeaderComponent],
+  imports: [RouterOutlet, NavbarComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

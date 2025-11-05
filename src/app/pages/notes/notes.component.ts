@@ -15,7 +15,7 @@ import {
 import { NoteComponent } from '../../components/notes/note/note.component';
 import { FormsModule } from '@angular/forms';
 import { LoaderComponent } from '../../components/shared/loader/loader.component';
-import { getNotes, getUserNotes, updateNote } from '../../api/notesApi';
+import { deleteNote, getNotes, getUserNotes, updateNote } from '../../api/notesApi';
 import { JwtService } from '../../services/jwt/jwt.service';
 import { DialogModule, Dialog } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
@@ -23,6 +23,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { CreateNoteComponent } from '../../components/popups/create-note/create-note.component';
 import { DateUtilsService } from '../../services/utils/date-utils.service';
 import { getUserTags } from '../../api/tagsApi';
+import { DeleteNoteComponent } from "../../components/popups/delete-note/delete-note.component";
 
 @Component({
   selector: 'app-notes',
@@ -34,7 +35,8 @@ import { getUserTags } from '../../api/tagsApi';
     FormsModule,
     LoaderComponent,
     CreateNoteComponent,
-  ],
+    DeleteNoteComponent
+],
   templateUrl: './notes.component.html',
   styleUrl: './notes.component.css',
 })
@@ -97,6 +99,15 @@ export class NotesComponent {
 
   showDialog() {
     this.visible = !this.visible;
+  }
+  delNote() {
+    this.loadToast("Deleting ...",0,'pending')
+    deleteNote(this.selected.id, this.jwt).then(() => {
+      this.loadToast("Deletion successful",3000,'success')
+      this.fetchNotes(this.jwt);
+    }).catch(() => {
+      this.loadToast("Failed to delete",3000,'failed')
+    });
   }
 
   preview(note: Note) {

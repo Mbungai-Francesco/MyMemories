@@ -1,8 +1,13 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2Nzk5MzE4ZTBkNWE3NmIwZWIwNzZmOGYiLCJpYXQiOjE3MzgyMzk5ODUsImV4cCI6MTczODMyNjM4NX0.HItec69FfdqNS5V_XiD40mVO8Kpj373yuiv0c7GSc3Q
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2FiMGVhZTVlNmVhODM1ZDAzMjE5NzEiLCJpYXQiOjE3NTE3MTI4NTcsImV4cCI6MTc1MTc5OTI1N30.H4W-afTuXug24Ki2dQV1wxW4a9N_5YlQbLcZq4ki0Os
 
 
-## GET all tags
+### GET all tags
 GET http://localhost:5000/api/tags
+# GET https://warm-reef-41256-e838c74ede11.herokuapp.com/api/tags
+Authorization: Bearer {{token}}
+
+### GET all for a user tags
+GET http://localhost:5000/api/tags/user/6799318e0d5a76b0eb076f8f
 # GET https://warm-reef-41256-e838c74ede11.herokuapp.com/api/tags
 Authorization: Bearer {{token}}
 

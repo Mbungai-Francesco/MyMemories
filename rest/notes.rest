@@ -1,8 +1,13 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2Nzk5MzE4ZTBkNWE3NmIwZWIwNzZmOGYiLCJpYXQiOjE3MzgyMzk5ODUsImV4cCI6MTczODMyNjM4NX0.HItec69FfdqNS5V_XiD40mVO8Kpj373yuiv0c7GSc3Q
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2FiMGVhZTVlNmVhODM1ZDAzMjE5NzEiLCJpYXQiOjE3NjIzNzkxNDAsImV4cCI6MTc2MjQ2NTU0MH0.6VAkrvTWq6ujm98t-gJWrLh3estA_OjyV2KrPC3B2zc
 
 
-## GET all notes
+### GET all notes
 GET http://localhost:5000/api/notes
+# GET https://warm-reef-41256-e838c74ede11.herokuapp.com/api/notes
+Authorization: Bearer {{token}}
+
+### GET all user notes
+GET http://localhost:5000/api/notes/user/6799318e0d5a76b0eb076f8f
 # GET https://warm-reef-41256-e838c74ede11.herokuapp.com/api/notes
 Authorization: Bearer {{token}}
 
@@ -18,23 +23,25 @@ Authorization: Bearer {{token}}
 
 {
   "title": "My First Note",
-  "date": "2024-01-15T00:00:00.000Z",
-  "time": "21:24",
-  "userId" : "6799318e0d5a76b0eb076f8f"
+  "description": "Installing Docker",
+  "date": "Sat Jul 05 2025 18:45:41 GMT+0100 (West Africa Standard Time",
+  "userId" : "67ab0eae5e6ea835d0321971",
+  "tagIds": [
+    "67ab0eaf5e6ea835d0321972"
+  ]
 }
  
 ### UPDATE a note
-PUT http://localhost:5000/api/notes/67993d52adec9ff75d56d525
+PUT http://localhost:5000/api/notes/690bd2d5201173b09ef456fd
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-  "title": "My First Note",
-  "date": "2024-01-15T00:00:00.000Z",
+  "title": "Dorel's Work",
+  "date": "2025-11-05T22:42:28.763Z",
   "time": "21:30",
-  "content": "This is the content of my updated note",
-  "userId" : "6799318e0d5a76b0eb076f8f",
-  "categoryId" : "67995443fbb0c017690a19cc"
+  "content": "Finish her work",
+  "deleted": true
 }
 
 

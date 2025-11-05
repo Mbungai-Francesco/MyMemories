@@ -59,7 +59,7 @@ export const GetUserTags = async (req: Request, res: Response) => {
   try {
     const { userId } = req.params
     if( !userId){
-      return res.status(400).json({ message: 'Name and userId are required' });
+      return res.status(400).json({ message: 'userId are required' });
     }
 
     const tags = await db.tag.findMany({

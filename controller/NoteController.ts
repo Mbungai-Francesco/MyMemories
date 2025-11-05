@@ -1,10 +1,11 @@
+import { time } from 'console';
 import { db } from '../lib/db';
 import { Request, Response } from 'express';
 
 export const CreateNote = async (req: Request, res: Response) => {
   try{
-    const { title, date, time, userId } = req.body
-    if(!title || !date || !time || !userId){
+    const { title, date, userId } = req.body
+    if(!title || !date || !userId){
       return res.status(400).json({ message: 'All fields are required' });
     }
 
@@ -23,7 +24,9 @@ export const CreateNote = async (req: Request, res: Response) => {
 
     const newNote = await db.note.create({
       data : {
-        ...req.body
+        ...req.body,
+        time : new Date(date).toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit' }),
+        deleted: false
       }
     })
 
@@ -41,6 +44,31 @@ export const CreateNote = async (req: Request, res: Response) => {
 export const GetNotes = async (req: Request, res: Response) => {
   try {
     const notes = await db.note.findMany({
+      include:{
+        tags: true,
+        category: true
+      }
+    });
+    if (!notes || notes.length === 0) {
+      return res.status(404).json({ message: 'No notes found' });
+    }
+    return res.status(200).json({ message: 'Notes found', data: notes });
+  } catch (error: any) {
+    console.log(error.message);
+    return res.status(500).json({ message: 'Internal Server Error' });
+  }
+}
+
+export const GetUserNotes = async (req: Request, res: Response) => {
+  try {
+    const { userId } = req.params
+    if( !userId){
+      return res.status(400).json({ message: 'userId are required' });
+    }
+    const notes = await db.note.findMany({
+      where: {
+        userId: userId
+      },
       include:{
         tags: true,
         category: true

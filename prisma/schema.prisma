@@ -59,7 +59,8 @@ model Note{
   title       String  
   date        DateTime
   time        String
-  content     String
+  deleted     Boolean  @default(false)
+  content     String?
   tags        Tag[] @relation(fields: [tagIds], references: [id])    // Many-to-many relationship with Tag
   tagIds      String[]  @db.ObjectId
   category    Category? @relation(fields: [categoryId], references: [id]) // Many Notes belong to one Category

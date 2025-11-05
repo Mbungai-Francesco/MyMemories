@@ -9,7 +9,7 @@ export const CreateUser = async (req: Request, res: Response)  => {
     if (!email || !firstname || !password) {
       return res.status(400).json({
         message:
-          'email is required. please try again with these value added',
+          'email, fistname and password are required. please try again with these value added',
       });
     }
 
@@ -23,17 +23,24 @@ export const CreateUser = async (req: Request, res: Response)  => {
     if (finduser) {
       return res
         .status(400)
-        .json({ message: 'user already exists', data: finduser });
+        .json({ message: 'User already exists', data: finduser });
     }
 
     const createUser = await db.user.create({
       data: {
         ...req.body,
       },
+      select:{
+        id: true,
+        firstname : true,
+        lastname : true,
+        password : false,
+        email : true
+      }
     });
 
     if (!createUser) {
-      return res.status(400).json({ message: 'user not created' });
+      return res.status(400).json({ message: 'User not created' });
     }
     const token = generateToken(createUser.id);
     return res.status(201).json({ message: 'User created',token, data: createUser });
@@ -50,7 +57,7 @@ export const GetUsers = async (req: Request, res: Response) => {
         tags: true,
         categories: true,
         notes: true
-      }
+      },
     });
     if (!users || users.length === 0) {
       return res.status(404).json({ message: 'No users found' });
@@ -72,7 +79,7 @@ export const GetUser = async (req: Request, res: Response) => {
       include: {
         tags: true,
         categories: true,
-        notes: true
+        notes: true,
       }
     });
 

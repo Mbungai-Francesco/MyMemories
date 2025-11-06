@@ -14,6 +14,7 @@ export interface Note {
   categoryId?: string;
   user?: User;
   userId: string;
+  deleted: boolean;
 }
 
 export interface NoteDto {

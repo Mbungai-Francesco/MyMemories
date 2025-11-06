@@ -100,15 +100,6 @@ export class NotesComponent {
   showDialog() {
     this.visible = !this.visible;
   }
-  delNote() {
-    this.loadToast("Deleting ...",0,'pending')
-    deleteNote(this.selected.id, this.jwt).then(() => {
-      this.loadToast("Deletion successful",3000,'success')
-      this.fetchNotes(this.jwt);
-    }).catch(() => {
-      this.loadToast("Failed to delete",3000,'failed')
-    });
-  }
 
   preview(note: Note) {
     this.selected = note;
@@ -160,15 +151,30 @@ export class NotesComponent {
     }).catch(()=>{
       this.loadToast("Failed to update",3000,'failed')
     });
+  }
 
-    // Simulate an API call
-    // setTimeout(() => {
-    //   // Update the note
-    //   // this.selected.title = this.tempTitle;
-    //   // this.selected.content = this.tempContent;
+  trashNote() {
+    this.loadToast("Trashing ...",0,'pending')
+    this.selected.time = new Date().toLocaleTimeString('en-GB', { hour12: false, hour: '2-digit', minute: '2-digit' })
+    this.selected.content = this.tempContent
+    this.selected.deleted = true;
+    console.log(this.selected);
+    updateNote(this.selected, this.jwt).then((res) => {
+      this.loadToast("Trashed",3000,'success')
+      this.selected = undefined!
+      this.fetchNotes(this.jwt);
+    }).catch(()=>{
+      this.loadToast("Failed to Trash",3000,'failed')
+    });
+  }
 
-    //   // End loading state
-    //   this.isLoading = false;
-    // }, 2000);
+  delNote() {
+    this.loadToast("Deleting ...",0,'pending')
+    deleteNote(this.selected.id, this.jwt).then(() => {
+      this.loadToast("Deletion successful",3000,'success')
+      this.fetchNotes(this.jwt);
+    }).catch(() => {
+      this.loadToast("Failed to delete",3000,'failed')
+    });
   }
 }

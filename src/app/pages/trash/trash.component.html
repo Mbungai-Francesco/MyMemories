@@ -1,1 +1,97 @@
-<p>trash works!</p>
+<!-- loader -->
+<app-loader
+  [isLoading]="true"
+  [message]="message"
+  [state]="state"
+  class="absolute right-4 bottom-4 p-4 bg-black/30 rounded-lg"
+></app-loader>
+<div class="w-full h-full grid grid-cols-5">
+  <!-- ? Notes block -->
+  <div class="py-4 pl-8 pr-4 h-full flex flex-col">
+
+    <div class="max-h-[82vh] overflow-y-auto notes custom-scrollbar pt-2">
+      @if(selected){ 
+        @for (item of notes; track $index) {
+          <app-note [note]="item" [inId]="selected.id" (click)="preview(item)" />
+        } 
+      }
+    </div>
+  </div>
+  
+  <!-- ? Notes preview block -->
+  <div class="px-4 col-span-3 border-0 border-x flex flex-col">
+    @if(selected){
+    <!-- ? head of preview -->
+    <div class="pb-4">
+      <input
+        class="text-2xl font-semibold leading-none py-6 outline-none"
+        [value]="tempTitle"
+      />
+      <!-- tags -->
+      <div class="font-light flex items-center w-full mb-2">
+        <lucide-icon
+          [name]="icons.tag"
+          class="text-myBlack-200"
+          size="15"
+        ></lucide-icon>
+        <p class="w-24 ml-1 text-sm">Tags</p>
+        <div class="flex items-center text-sm gap-1">
+          @for (tag of selected.tags; track $index) {
+          <p class="rounded-sm">
+            {{ tag.name }}{{ $index != selected.tags.length - 1 ? "," : " " }}
+          </p>
+          }
+        </div>
+      </div>
+      <!-- last edited -->
+      <div class="font-light flex items-center w-full">
+        <lucide-icon
+          [name]="icons.Clock"
+          class="text-myBlack-200"
+          size="15"
+        ></lucide-icon>
+        <p class="w-24 ml-1 text-sm">Last edited</p>
+        <div class="flex gap-1 text-xs">
+          <p>{{ this.dateUtils.formatDate(selected.date) }}</p>
+          <!-- <p>{{ selected.date.toDateString().slice(8, 10) }}</p>
+          <p>{{ selected.date.toDateString().slice(4, 7) }}</p>
+          <p>{{ selected.date.toDateString().slice(11, 15) }}</p> -->
+        </div>
+      </div>
+    </div>
+    <!-- ? content of note -->
+    <div class="border-0 border-y flex-grow">
+      <textarea
+        class="w-full h-full outline-none py-2 font-light textArea"
+        name=""
+        id=""
+        [value]="tempContent"
+      ></textarea>
+    </div>
+    }
+  </div>
+
+  <!-- ? Notes option block -->
+  <div class="py-4 px-4">
+    <!-- ? Archieve -->
+    <app-nav-button
+      [icon]="icons.Archive"
+      [style]="
+        'flex items-center mb-2 py-2 px-4 cursor-pointer rounded-lg text-black border border-black/30 hover:bg-myOrange-200 hover:border-transparent gap-1'
+      "
+      [textStyle]="'text-sm '"
+      [iconSize]="'15'"
+      text="Archive Note"
+    />
+    <app-nav-button
+      [icon]="icons.Trash2"
+      [style]="
+        'flex items-center mb-2 py-2 px-4 cursor-pointer rounded-lg text-black border border-black/30 hover:bg-myOrange-200 hover:border-transparent gap-1'
+      "
+      [textStyle]="'text-sm '"
+      [iconSize]="'15'"
+      text="Delete Note"
+      (click)="delNote()"
+    />
+  </div>
+</div>

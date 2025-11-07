@@ -15,7 +15,7 @@ import {
 import { NoteComponent } from '../../components/notes/note/note.component';
 import { FormsModule } from '@angular/forms';
 import { LoaderComponent } from '../../components/shared/loader/loader.component';
-import { deleteNote, getNotes, getUserNotes, updateNote } from '../../api/notesApi';
+import { getUserNotes, updateNote } from '../../api/notesApi';
 import { JwtService } from '../../services/jwt/jwt.service';
 import { DialogModule, Dialog } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
@@ -34,8 +34,7 @@ import { DeleteNoteComponent } from "../../components/popups/delete-note/delete-
     LucideAngularModule,
     FormsModule,
     LoaderComponent,
-    CreateNoteComponent,
-    DeleteNoteComponent
+    CreateNoteComponent
 ],
   templateUrl: './notes.component.html',
   styleUrl: './notes.component.css',
@@ -120,11 +119,11 @@ export class NotesComponent {
     //   this.tempTitle = res[0].title;
     // });
     getUserNotes(this.jwtService.getId(), token).then((res) => {
-      this.notes = [...res];
+      this.notes = res.filter((val) => !val.deleted);
       if (this.notes.length > 0) {
-        this.selected = res[0];
-        this.tempContent = res[0].content;
-        this.tempTitle = res[0].title;
+        this.selected = this.notes[0];
+        this.tempContent = this.notes[0].content;
+        this.tempTitle = this.notes[0].title;
       }
     });
   }
@@ -165,16 +164,6 @@ export class NotesComponent {
       this.fetchNotes(this.jwt);
     }).catch(()=>{
       this.loadToast("Failed to Trash",3000,'failed')
-    });
-  }
-
-  delNote() {
-    this.loadToast("Deleting ...",0,'pending')
-    deleteNote(this.selected.id, this.jwt).then(() => {
-      this.loadToast("Deletion successful",3000,'success')
-      this.fetchNotes(this.jwt);
-    }).catch(() => {
-      this.loadToast("Failed to delete",3000,'failed')
     });
   }
 }

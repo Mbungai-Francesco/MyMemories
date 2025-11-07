@@ -24,7 +24,7 @@
     <div class="max-h-[82vh] overflow-y-auto notes custom-scrollbar pt-2">
       @if(selected){ 
         @for (item of notes; track $index) {
-          @if(!item.deleted){<app-note [note]="item" [inId]="selected.id" (click)="preview(item)" />}
+          <app-note [note]="item" [inId]="selected.id" (click)="preview(item)" />
         } 
       }
     </div>

@@ -4,6 +4,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { NotesComponent } from './pages/notes/notes.component';
 import { AuthGuard } from './guard/auth.guard';
+import { TrashComponent } from './pages/trash/trash.component';
 
 export const routes: Routes = [
   {
@@ -21,6 +22,11 @@ export const routes: Routes = [
   {
     path: 'notes',
     component: NotesComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'trash',
+    component: TrashComponent,
     canActivate: [AuthGuard]
   },
 ];

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BadgePlus, ChevronsUpDown, LucideAngularModule, Notebook, PlusCircle, Settings, X } from 'lucide-angular';
+import { BadgePlus, ChevronsUpDown, LucideAngularModule, Notebook, PlusCircle, Settings, Trash2, X } from 'lucide-angular';
 import { NavButtonComponent } from "../nav-button/nav-button.component";
 import { TagComponent } from '../../notes/tag/tag.component';
 import { Tag, User } from '../../../types';
@@ -39,5 +39,5 @@ export class NavbarComponent {
     })
   }
 
-  readonly icons = { X, PlusCircle, Notebook, Settings, BadgePlus, ChevronsUpDown }
+  readonly icons = { X, PlusCircle, Notebook, Settings, BadgePlus, ChevronsUpDown, Trash2 }
 }

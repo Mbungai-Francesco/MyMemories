@@ -9,18 +9,8 @@ import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 })
 export class TagComponent {
   @Input() name : string = ''
-  @Input() color !: string
-  @ViewChild('tag') tag!: ElementRef<HTMLInputElement>;
+  @Input() color : string = ''
 
-  constructor() { 
-    
-  }
-
-  ngOnInit(): void {
-    // this.tag.nativeElement.setAttribute('style', `background-color: ${this.color}`)
-  }
-
-  ngAfterViewInit(){
-    // this.tag.nativeElement.setAttribute('style', `background-color: ${this.color}`)
+  constructor() {  
   }
 }

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Output, ViewChild, viewChild } from '@angular/core';
 import { PopCardComponent } from '../pop-card/pop-card.component';
 import { Color, TagDto } from '../../../types';
 import { createTag } from '../../../api/tagsApi';
@@ -16,6 +16,7 @@ import { getColors } from '../../../api/colorsApi';
 export class CreateTagComponent {
   @Output() closeTag = new EventEmitter<void>();
   @Output() refetchTags = new EventEmitter<string>();
+  @ViewChild('myTag') myTag!: ElementRef;
 
   name = '';
   color = '';
@@ -36,6 +37,12 @@ export class CreateTagComponent {
   close(){
     this.closeTag.emit();
   }
+  
+  changeColor(event: Event) {
+    const selectElement = event.target as HTMLSelectElement;
+    this.color = selectElement.value;
+    this.myTag.nativeElement.style.color = this.color;
+  }
 
   create() {
     if (this.name && this.color) {
@@ -51,6 +58,5 @@ export class CreateTagComponent {
       });
     }
   }
-
 
 }

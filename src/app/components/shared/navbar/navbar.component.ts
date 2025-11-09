@@ -21,7 +21,7 @@ import { CreateTagComponent } from "../../popups/create-tag/create-tag.component
 export class NavbarComponent {
   tags : Tag[] = []
   user !: User
-  visible = true
+  visible = false
 
   constructor(
     private jwtService : JwtService

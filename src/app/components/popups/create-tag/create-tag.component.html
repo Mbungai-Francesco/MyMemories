@@ -1,18 +1,43 @@
 <app-pop-card>
-    <h2 class="text-2xl font-bold text-gray-800 mb-2">New Tag</h2>
+    <h2 [class]="'text-2xl font-bold text-gray-800 mb-2 ' + (color ? 'shadow-sm' : '')" #myTag>New Tag</h2>
     <p class="text-gray-600 mb-2">Create a new tag.</p>
 
     <div class="space-y-2">
       <div>
-        <label for="tagName" class="form-label">Tag Name</label>
-        <label for="tagName" class="form-label">{{colors[0].name}}</label>
+        <label for="tagName" [class]="'form-label'">Tag Name</label>
         <input
           type="text"
           id="tagName"
           [(ngModel)]="name"
           class="form-input"
-          placeholder="Tag name"
+          placeholder="Name"
         />
+      </div>
+
+      <div>
+        <label for="tagDescription" [class]="'form-label'">Tag Description</label>
+        <input
+          type="text"
+          id="tagDescription"
+          [(ngModel)]="description"
+          class="form-input"
+          placeholder="Description"
+        />
+      </div>
+
+      <div>
+        <select
+          name="colors"
+          id="colors"
+          class="form-input"
+          [(ngModel)]="color"
+          (change)="changeColor($event)"
+        >
+          <option value="">Select colors</option>
+          @for(item of colors; track $index){
+            <option [value]="item.name">{{ item.name }}</option>
+          }
+        </select>
       </div>
 
       <div class="flex justify-end space-x-3 pt-4">

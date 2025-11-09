@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DeleteNoteComponent } from './delete-note.component';
+import { CreateTagComponent } from './create-tag.component';
 
-describe('DeleteNoteComponent', () => {
-  let component: DeleteNoteComponent;
-  let fixture: ComponentFixture<DeleteNoteComponent>;
+describe('CreateTagComponent', () => {
+  let component: CreateTagComponent;
+  let fixture: ComponentFixture<CreateTagComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DeleteNoteComponent]
+      imports: [CreateTagComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(DeleteNoteComponent);
+    fixture = TestBed.createComponent(CreateTagComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

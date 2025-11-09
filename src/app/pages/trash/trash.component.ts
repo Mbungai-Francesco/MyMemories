@@ -5,9 +5,9 @@ import {
   Plus,
   Tag as tag,
   Clock,
-  Archive,
   Trash2,
   LucideAngularModule,
+  ArchiveRestore,
 } from 'lucide-angular';
 import { NavbarServiceService } from '../../services/navbar/navbar-service.service';
 import { UserService } from '../../services/user/user.service';
@@ -44,7 +44,7 @@ export class TrashComponent {
   message = '';
   visible: boolean = true;
 
-  readonly icons = { PlusCircle, Plus, tag, Clock, Archive, Trash2 };
+  readonly icons = { PlusCircle, Plus, tag, Clock, ArchiveRestore, Trash2 };
 
   // Sample notes data
   notes: Note[] = [];
@@ -94,13 +94,13 @@ export class TrashComponent {
 
   preview(note: Note) {
     this.selected = note;
-    this.tempContent = note.content;
+    this.tempContent = note.content || "";
     this.tempTitle = note.title;
   }
 
   undo() {
     this.tempTitle = this.selected.title;
-    this.tempContent = this.selected.content;
+    this.tempContent = this.selected.content || "";
   }
 
   fetchNotes(token: string) {
@@ -114,7 +114,7 @@ export class TrashComponent {
       this.notes = res.filter((val) => val.deleted);
       if (this.notes.length > 0) {
         this.selected = this.notes[0];
-        this.tempContent = this.notes[0].content;
+        this.tempContent = this.notes[0].content || "";
         this.tempTitle = this.notes[0].title;
       }
     });
@@ -152,6 +152,7 @@ export class TrashComponent {
     deleteNote(this.selected.id, this.jwt)
       .then(() => {
         this.loadToast('Deletion successful', 3000, 'success');
+        this.selected = undefined!;
         this.fetchNotes(this.jwt);
       })
       .catch(() => {

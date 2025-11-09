@@ -8,16 +8,15 @@
 <div class="w-full h-full grid grid-cols-5">
   <!-- ? Notes block -->
   <div class="py-4 pl-8 pr-4 h-full flex flex-col">
-
     <div class="max-h-[82vh] overflow-y-auto notes custom-scrollbar pt-2">
-      @if(selected){ 
-        @for (item of notes; track $index) {
-          <app-note [note]="item" [inId]="selected.id" (click)="preview(item)" />
-        } 
+      @for (item of notes; track $index) {
+      <app-note [note]="item" [inId]="selected.id" (click)="preview(item)" />
+      }@if(notes.length == 0){
+      <p>No notes</p>
       }
     </div>
   </div>
-  
+
   <!-- ? Notes preview block -->
   <div class="px-4 col-span-3 border-0 border-x flex flex-col">
     @if(selected){
@@ -26,6 +25,7 @@
       <input
         class="text-2xl font-semibold leading-none py-6 outline-none"
         [value]="tempTitle"
+        readonly
       />
       <!-- tags -->
       <div class="font-light flex items-center w-full mb-2">
@@ -66,6 +66,7 @@
         name=""
         id=""
         [value]="tempContent"
+        readonly
       ></textarea>
     </div>
     }
@@ -75,13 +76,14 @@
   <div class="py-4 px-4">
     <!-- ? Archieve -->
     <app-nav-button
-      [icon]="icons.Archive"
+      [icon]="icons.ArchiveRestore"
       [style]="
         'flex items-center mb-2 py-2 px-4 cursor-pointer rounded-lg text-black border border-black/30 hover:bg-myOrange-200 hover:border-transparent gap-1'
       "
       [textStyle]="'text-sm '"
       [iconSize]="'15'"
-      text="Archive Note"
+      text="Recover Note"
+      (click)="restoreNote()"
     />
     <app-nav-button
       [icon]="icons.Trash2"

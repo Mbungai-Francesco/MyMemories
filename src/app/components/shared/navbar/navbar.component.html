@@ -1,5 +1,6 @@
 <div class="w-full flex flex-col justify-between py-6 px-4 h-full border-0 border-r">
   <div>
+    <app-create-tag (closeTag)="showCreateTag()" [hidden]="visible" (refetchTags)="fetchTags($event)"></app-create-tag>
     <div class="flex mb-4 justify-between items-center">
       <p class="font-semibold text-2xl cursor-pointer mr-2">myMEMORY</p>
       <div class="bg-black w-fit rounded-md flex items-center p-[3px]">
@@ -26,7 +27,7 @@
         <app-tag name="Casual" color="green"></app-tag>
         <app-tag name="Daily" color="yellow"></app-tag> -->
       </div>
-      <app-nav-button [icon]="icons.BadgePlus" text="Create Tag" [style]="'flex items-center mb-2 hover:bg-myWhite-200 p-2 cursor-pointer rounded-lg gap-4'"/>
+      <app-nav-button [icon]="icons.BadgePlus" text="Create Tag" [style]="'flex items-center mb-2 hover:bg-myWhite-200 p-2 cursor-pointer rounded-lg gap-4'" (click)="showCreateTag()"/>
     </div>
   </div>
   <div class='flex justify-between items-center mb-2 hover:bg-myWhite-200 p-2 cursor-pointer rounded-lg bg-myWhite-200'>

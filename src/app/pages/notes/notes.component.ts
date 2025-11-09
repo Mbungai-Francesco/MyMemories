@@ -23,7 +23,6 @@ import { InputTextModule } from 'primeng/inputtext';
 import { CreateNoteComponent } from '../../components/popups/create-note/create-note.component';
 import { DateUtilsService } from '../../services/utils/date-utils.service';
 import { getUserTags } from '../../api/tagsApi';
-import { DeleteNoteComponent } from "../../components/popups/delete-note/delete-note.component";
 
 @Component({
   selector: 'app-notes',
@@ -102,27 +101,27 @@ export class NotesComponent {
 
   preview(note: Note) {
     this.selected = note;
-    this.tempContent = note.content;
+    this.tempContent = note.content || "";
     this.tempTitle = note.title;
   }
 
   undo() {
     this.tempTitle = this.selected.title;
-    this.tempContent = this.selected.content;
+    this.tempContent = this.selected.content || "";
   }
 
   fetchNotes(token: string) {
     // getNotes(token).then((res) => {
     //   this.notes = [...res];
     //   this.selected = res[0];
-    //   this.tempContent = res[0].content;
+    //   this.tempContent = res[0].content || "";
     //   this.tempTitle = res[0].title;
     // });
     getUserNotes(this.jwtService.getId(), token).then((res) => {
       this.notes = res.filter((val) => !val.deleted);
       if (this.notes.length > 0) {
         this.selected = this.notes[0];
-        this.tempContent = this.notes[0].content;
+        this.tempContent = this.notes[0].content || "";
         this.tempTitle = this.notes[0].title;
       }
     });
@@ -145,7 +144,7 @@ export class NotesComponent {
     updateNote(this.selected, this.jwt).then((res) => {
       this.loadToast("Updated",3000,'success')
       this.selected = res;
-      this.tempContent = res.content;
+      this.tempContent = res.content || "";
       this.tempTitle = res.title;
     }).catch(()=>{
       this.loadToast("Failed to update",3000,'failed')

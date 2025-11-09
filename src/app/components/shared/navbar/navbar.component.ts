@@ -8,18 +8,20 @@ import { getUserTags } from '../../../api/tagsApi';
 import { JwtService } from '../../../services/jwt/jwt.service';
 import { getUser } from '../../../api/userApi';
 import { RouterLink } from '@angular/router';
+import { CreateTagComponent } from "../../popups/create-tag/create-tag.component";
 
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [LucideAngularModule, NavButtonComponent, TagComponent, RouterLink],
+  imports: [LucideAngularModule, NavButtonComponent, TagComponent, RouterLink, CreateTagComponent],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
   tags : Tag[] = []
   user !: User
+  visible = true
 
   constructor(
     private jwtService : JwtService
@@ -40,4 +42,14 @@ export class NavbarComponent {
   }
 
   readonly icons = { X, PlusCircle, Notebook, Settings, BadgePlus, ChevronsUpDown, Trash2 }
+
+  fetchTags(token: string) {
+    getUserTags(this.jwtService.getId(), token).then(
+      (res) => (this.tags = res)
+    );
+  }
+
+  showCreateTag(){
+    this.visible = !this.visible
+  }
 }

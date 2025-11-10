@@ -1,3 +1,9 @@
+<app-loader
+  [isLoading]="true"
+  [message]="message"
+  [state]="state"
+  class="absolute right-4 bottom-4 p-4 bg-black/30 rounded-lg"
+></app-loader>
 <div class="w-full flex flex-col justify-between py-6 px-4 h-full border-0 border-r">
   <div>
     <app-create-tag (closeTag)="showCreateTag()" [hidden]="visible" (refetchTags)="fetchTags($event)"></app-create-tag>
@@ -11,21 +17,21 @@
           routerLink="/login"
         ></lucide-icon>
       </div>
-    </div>
+  </div>
     <div class="py-2 border-0 border-b ">
       <app-nav-button [icon]="icons.Notebook" link="notes" text="Notes"/>
       <app-nav-button [icon]="icons.Settings" link="settings" text="Settings"/>
       <app-nav-button [icon]="icons.Trash2" link="trash" text="Trash"/>
     </div>
     <div>
-      <p class="font-medium text-base text-myBlack-200 mb-2">Tags</p>
+      <div class="justify-between flex items-center">
+        <p class="font-medium text-base text-myBlack-200 mb-2">Tags</p>
+        <lucide-icon [name]="icons.RefreshCcw" class="text-black hover:shadow-lg hover:cursor-pointer" size="15" (click)="fetchTags()" ></lucide-icon>
+      </div>
       <div class="px-2 max-h-[20vh] overflow-y-auto tags">
         @for (tag of tags; track $index) {
-          <app-tag name="{{tag.name}}" color="{{tag.color}}"></app-tag>
+          <app-tag id="{{tag.id}}" name="{{tag.name}}" color="{{tag.color}}" (deleted)="deletedTag()"></app-tag>
         }
-        <!-- <app-tag name="Important" color="red"></app-tag>
-        <app-tag name="Casual" color="green"></app-tag>
-        <app-tag name="Daily" color="yellow"></app-tag> -->
       </div>
       <app-nav-button [icon]="icons.BadgePlus" text="Create Tag" [style]="'flex items-center mb-2 hover:bg-myWhite-200 p-2 cursor-pointer rounded-lg gap-4'" (click)="showCreateTag()"/>
     </div>

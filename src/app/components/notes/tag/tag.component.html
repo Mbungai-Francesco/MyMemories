@@ -1,4 +1,12 @@
-<div class="flex items-center space-x-2 cursor-pointer">
-  <div class="w-4 aspect-square rounded-3xl" style="background-color: {{color}}" ></div>
-  <p>{{name}}</p>
+<div class="flex items-center space-x-2 cursor-pointer justify-between">
+  <div class="flex items-center space-x-2">
+    <div
+      class="w-4 aspect-square rounded-3xl"
+      style="background-color: {{ color }}"
+    ></div>
+    <p>{{ name }}</p>
+  </div>
+  @if(name){
+    <lucide-icon [name]="icons.Trash2" class="text-black hover:text-red-500" size="15" (click)="delete()"></lucide-icon>
+  }
 </div>

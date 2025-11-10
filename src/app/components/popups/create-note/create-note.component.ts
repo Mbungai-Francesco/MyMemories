@@ -61,6 +61,8 @@ export class CreateNoteComponent {
           console.log('Note created successfully:', res)
           this.closeNote.emit();
           this.refetchNotes.emit(this.jwt);
+          this.title = '';
+          this.selectedTags.clear();
         }
       );
     }

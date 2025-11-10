@@ -1,16 +1,35 @@
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { LucideAngularModule, Trash2 } from 'lucide-angular';
+import { JwtService } from '../../../services/jwt/jwt.service';
+import { deleteTag } from '../../../api/tagsApi';
 
 @Component({
   selector: 'app-tag',
   standalone: true,
-  imports: [],
+  imports: [LucideAngularModule],
   templateUrl: './tag.component.html',
-  styleUrl: './tag.component.css'
+  styleUrl: './tag.component.css',
 })
 export class TagComponent {
-  @Input() name : string = ''
-  @Input() color : string = ''
+  @Input() id: string = '';
+  @Input() name: string = '';
+  @Input({ required: true }) color: string = '';
+  @Output() deleted = new EventEmitter<void>();
 
-  constructor() {  
+  jwt = '';
+
+  constructor(private jwtService: JwtService) {
+    jwtService.jwt$.subscribe((jwt) => {
+      this.jwt = jwt;
+    });
+  }
+
+  readonly icons = { Trash2 };
+
+  delete() {
+    deleteTag(this.id, this.jwt).then((res) => {
+      console.log(res);
+      this.deleted.emit();
+    });
   }
 }

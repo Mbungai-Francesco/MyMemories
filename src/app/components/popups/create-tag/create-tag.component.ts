@@ -55,6 +55,9 @@ export class CreateTagComponent {
       createTag(newTag, this.jwt).then((res) => {
         this.refetchTags.emit(this.jwt);
         this.closeTag.emit();
+        this.name = '';
+        this.color = '';
+        this.description = '';
       });
     }
   }

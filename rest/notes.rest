@@ -1,4 +1,4 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2FiMGVhZTVlNmVhODM1ZDAzMjE5NzEiLCJpYXQiOjE3NjIzNzkxNDAsImV4cCI6MTc2MjQ2NTU0MH0.6VAkrvTWq6ujm98t-gJWrLh3estA_OjyV2KrPC3B2zc
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2FiMGVhZTVlNmVhODM1ZDAzMjE5NzEiLCJpYXQiOjE3NjI3MjU1MzAsImV4cCI6MTc2MjgxMTkzMH0.G-Ep6lJj7YXHnX4CY5K7RR8KOnseBb8o2roafS0Knmk
 
 
 ### GET all notes
@@ -40,8 +40,8 @@ Authorization: Bearer {{token}}
   "title": "Dorel's Work",
   "date": "2025-11-05T22:42:28.763Z",
   "time": "21:30",
-  "content": "Finish her work",
-  "deleted": true
+  "content": "",
+  "deleted": false
 }
 
 

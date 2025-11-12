@@ -110,8 +110,8 @@ export const GetNote = async (req: Request, res: Response) => {
 export const UpdateNote = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    const { title, date, time, content, tags, category } = req.body;
-    if (!title || !date || !time || !content) {
+    const { title, date, time, tags, category } = req.body;
+    if (!title || !date || !time) {
       return res.status(400).json({ message: 'All fields are required' });
     }
     const findNote = await db.note.findUnique({
@@ -129,6 +129,10 @@ export const UpdateNote = async (req: Request, res: Response) => {
       data: {
         ...req.body
       },
+      include:{
+        tags: true,
+        category: true
+      }
     });
     if (!updatedNote) {
       return res.status(400).json({ message: 'Note not updated' });

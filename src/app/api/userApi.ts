@@ -45,7 +45,9 @@ export const getUserByMail = async (mail : string) => {
   try{
     const res = await axios.get(`${link}/api/mail/${mail}`)
     console.log(res.data.data);
-    return res.data.data as User
+    const user = res.data.data as User
+    user.jwt = res.data.token
+    return user
   }
   catch(error){
     throw new Error('Get user by mail failed: ' + (error as Error).message);

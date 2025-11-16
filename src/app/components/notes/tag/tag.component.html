@@ -1,4 +1,4 @@
-<div class="flex items-center space-x-2 cursor-pointer justify-between">
+<div class="flex items-center cursor-pointer justify-between">
   <div class="flex items-center space-x-2">
     <div
       class="w-4 aspect-square rounded-3xl"
@@ -7,6 +7,9 @@
     <p>{{ name }}</p>
   </div>
   @if(name){
-    <lucide-icon [name]="icons.Trash2" class="text-black hover:text-red-500" size="15" (click)="delete()"></lucide-icon>
+    <div class="flex justify-between items-center gap-1">
+      <lucide-icon [name]="icons.SquarePen" class="text-black hover:text-blue-500" size="15" (click)="update()"></lucide-icon>
+      <lucide-icon [name]="icons.Trash2" class="text-black hover:text-red-500" size="15" (click)="delete()"></lucide-icon>
+    </div>
   }
 </div>

@@ -1,5 +1,5 @@
 import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
-import { LucideAngularModule, Trash2 } from 'lucide-angular';
+import { LucideAngularModule, SquarePen, Trash2 } from 'lucide-angular';
 import { JwtService } from '../../../services/jwt/jwt.service';
 import { deleteTag } from '../../../api/tagsApi';
 
@@ -24,12 +24,16 @@ export class TagComponent {
     });
   }
 
-  readonly icons = { Trash2 };
+  readonly icons = { Trash2, SquarePen };
 
   delete() {
     deleteTag(this.id, this.jwt).then((res) => {
       console.log(res);
       this.deleted.emit();
     });
+  }
+
+  update() {
+    
   }
 }

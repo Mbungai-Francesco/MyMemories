@@ -73,6 +73,7 @@ export class LoginComponent {
         if(user){
           console.log('User:', user);
           this.userService.setUser(user)
+          this.jwtService.setJwt(user.jwt || '')
           this.router.navigate(['/notes']);
         }
         else{

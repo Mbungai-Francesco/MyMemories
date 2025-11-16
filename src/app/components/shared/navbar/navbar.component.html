@@ -8,7 +8,7 @@
     <app-create-tag (closeTag)="showCreateTag()" [hidden]="visible" (refetchTags)="fetchTags($event)"></app-create-tag>
     <div class="flex mb-4 justify-between items-center">
       <p class="font-semibold text-2xl cursor-pointer mr-2">myMEMORY</p>
-      <div class="bg-black w-fit rounded-md flex items-center p-[3px]">
+      <div class="bg-black w-fit rounded-md flex items-center p-[3px] cursor-pointer">
         <lucide-icon 
           [name]="icons.X" 
           color="white"
@@ -27,7 +27,7 @@
         <p class="font-medium text-base text-myBlack-200 mb-2">Tags</p>
         <lucide-icon [name]="icons.RefreshCcw" class="text-black hover:shadow-lg hover:cursor-pointer" size="15" (click)="fetchTags()" ></lucide-icon>
       </div>
-      <div class="px-2 max-h-[20vh] overflow-y-auto tags">
+      <div class="pl-2 max-h-[20vh] overflow-y-auto tags">
         @for (tag of tags; track $index) {
           <app-tag id="{{tag.id}}" name="{{tag.name}}" color="{{tag.color}}" (deleted)="deletedTag()"></app-tag>
         }
@@ -36,6 +36,7 @@
     </div>
   </div>
   <div class='flex justify-between items-center mb-2 hover:bg-myWhite-200 p-2 cursor-pointer rounded-lg bg-myWhite-200'>
+
     @if(user){
       <p class="text-lg font-normal">{{user.firstname || ' '}}</p>
     }

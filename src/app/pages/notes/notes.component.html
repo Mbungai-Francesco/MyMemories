@@ -26,6 +26,8 @@
         @for (item of notes; track $index) {
           <app-note [note]="item" [inId]="selected.id" (click)="preview(item)" />
         } 
+      }@else {
+        <p>No notes</p>
       }
     </div>
   </div>
@@ -131,7 +133,7 @@
       "
       [textStyle]="'text-sm '"
       [iconSize]="'15'"
-      text="Delete Note"
+      text="Trash Note"
       (click)="trashNote()"
     />
   </div>

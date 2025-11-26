@@ -43,6 +43,7 @@ export class LoginComponent {
       password: ['', Validators.required],
     });
     this.navbarService.triggerNavAction()
+    this.jwtService.setJwt('')
   }
 
   login(){
@@ -50,17 +51,15 @@ export class LoginComponent {
       const email = this.loginForm.value.email as string;
       const password = this.loginForm.value.password as string;
       loginUser(email, password).then((res) =>{
-        if(res){ 
-          console.log('Login successful:', res);
-          this.userService.setUser(res)
-          this.jwtService.setJwt(res.jwt || '')
-          this.router.navigate(['/notes']);
-          this.invalidCredentials = false;
-        }
-        else{
-          console.log('Login failed:');
-          this.invalidCredentials = true;
-        }
+        console.log('Login successful:', res);
+        this.userService.setUser(res)
+        this.jwtService.setJwt(res.jwt || '')
+        this.router.navigate(['/notes']);
+        this.invalidCredentials = false;
+        
+      }).catch((err)=>{
+        console.log('Login failed:');
+        this.invalidCredentials = true;
       })
       console.log(this.loginForm.value);
     }

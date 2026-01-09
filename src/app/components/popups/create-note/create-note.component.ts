@@ -54,6 +54,7 @@ export class CreateNoteComponent {
         tagIds: Array.from(this.selectedTags),
         userId: this.jwtService.getId(),
         date: new Date(),
+        content: ""
       };
       console.log(newNote);
       createNote(newNote, this.jwt).then(

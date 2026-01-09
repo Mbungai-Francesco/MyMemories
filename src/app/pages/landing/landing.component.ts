@@ -6,6 +6,7 @@ import { RouterLink } from '@angular/router';
 import { NavbarServiceService } from '../../services/navbar/navbar-service.service';
 import { JwtService } from '../../services/jwt/jwt.service';
 import { jwtDecode } from 'jwt-decode';
+import { getUser } from '../../api/userApi';
 
 @Component({
   selector: 'app-landing',
@@ -36,11 +37,11 @@ export class LandingComponent {
         console.log('logging', decodedToken);
         // console.log('logging',decodedToken.exp - decodedToken.iat);
 
-        // getUser(this.id,res) .then(use =>{
-        //   if(use){
-        //     userService.setUser(use)
-        //   }
-        // })
+        getUser(this.id,res) .then(use =>{
+          if(use){
+            userService.setUser(use)
+          }
+        })
       }
     });
   }

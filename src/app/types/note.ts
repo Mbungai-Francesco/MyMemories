@@ -24,4 +24,5 @@ export interface NoteDto {
   tagIds : string[];
   categoryId ?: string;
   userId: string;
+  content : string ;
 }

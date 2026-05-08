@@ -11,7 +11,7 @@ import {
 import { getUserByMail, loginUser } from '../../api/userApi';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
-import { provideAuth, getAuth } from '@angular/fire/auth';
+// import { provideAuth, getAuth } from '@angular/fire/auth';
 import { UserService } from '../../services/user/user.service';
 import { UserLogin } from '../../types';
 import { JwtService } from '../../services/jwt/jwt.service';
@@ -30,7 +30,7 @@ export class LoginComponent {
   
   constructor(
     private fb: FormBuilder,
-    private authService: AuthService,
+    // private authService: AuthService,
     private router : Router,
     private userService : UserService,
     private jwtService : JwtService,
@@ -65,21 +65,21 @@ export class LoginComponent {
     }
   }
 
-  loginWithGoogle(){
-    this.authService.googleSignIn()
-    .then(res => {
-      getUserByMail(res.user.email || '').then(user =>{
-        if(user){
-          console.log('User:', user);
-          this.userService.setUser(user)
-          this.jwtService.setJwt(user.jwt || '')
-          this.router.navigate(['/notes']);
-        }
-        else{
-          console.log('User not found');
-        }
-      })
-    })
-    .catch(error => console.error(error));
-  }
+  // loginWithGoogle(){
+  //   this.authService.googleSignIn()
+  //   .then(res => {
+  //     getUserByMail(res.user.email || '').then(user =>{
+  //       if(user){
+  //         console.log('User:', user);
+  //         this.userService.setUser(user)
+  //         this.jwtService.setJwt(user.jwt || '')
+  //         this.router.navigate(['/notes']);
+  //       }
+  //       else{
+  //         console.log('User not found');
+  //       }
+  //     })
+  //   })
+  //   .catch(error => console.error(error));
+  // }
 }

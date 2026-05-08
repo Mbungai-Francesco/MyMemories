@@ -1,7 +1,7 @@
 export const port = 5000
 
-export const link = 'https://mymemories-backend.onrender.com'
-// export const link = `http://localhost:${port}`
+// export const link = 'https://mymemories-backend.onrender.com'
+export const link = `http://localhost:${port}`
 
 export const conf = (jwt : string) => {
   return {
